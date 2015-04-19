@@ -7,18 +7,26 @@ import java.sql.*;
 public class DBTest {
 
 	private DBAccess db;
+	private static boolean isCreated = false;
 
 	@Before
 	public void setUp() throws Exception 
 	{
-		db= new DBAccess();
+		if(!isCreated){
+			createDB.createDataBase();
+			isCreated = true;
+		}
+		db = new DBAccess();
 	}
+
+
 
 	@After
 	public void tearDown() throws Exception 
 	{
+		//db.closeConnection();
 	}
-	
+
 	/**
 	 * Test #1    
 	 */
@@ -29,7 +37,7 @@ public class DBTest {
 		if(rs.next())
 			assertEquals(2, rs.getInt(1));
 	}
-	
+
 	/**
 	 * Test #2
 	 * Tests adding System User to the database.
@@ -46,7 +54,7 @@ public class DBTest {
 			assertEquals("Moshe", rs.getString(1));
 		db.deleteUser("Moshe");
 	}
-	
+
 	/**
 	 * Test #3
 	 * Tests adding System User to the database with the same UserName (key).
@@ -63,7 +71,7 @@ public class DBTest {
 		assertEquals(1, rs.getRow());
 		db.deleteUser("Moshe");
 	}
-	
+
 	/**
 	 * Test #4
 	 * Tests deleting System User from the database.
@@ -78,9 +86,9 @@ public class DBTest {
 		ResultSet rs = db.getUser("Moshe");
 		rs.last();
 		assertEquals(0, rs.getRow());
-		
+
 	}
-	
+
 	/**
 	 * Test #5
 	 * Tests adding System User Client to the database.
@@ -126,7 +134,7 @@ public class DBTest {
 			assertEquals("99999", rs.getString(1));
 		db.deleteUser("Moshe");
 	}
-	
+
 	/**
 	 * Test #8
 	 * Tests adding coupon_purchase.
@@ -147,7 +155,7 @@ public class DBTest {
 		db.deleteUser("Moshe");
 
 	}
-	
+
 	/**
 	 * Test #9
 	 * Tests deleting user's coupon_purchase.
@@ -180,7 +188,7 @@ public class DBTest {
 		db.deapproveCoupon("11111");
 	}
 
-	
+
 }
-	
+
 

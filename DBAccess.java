@@ -1,3 +1,4 @@
+
 import java.sql.*;
 
 /**
@@ -15,37 +16,43 @@ public class DBAccess {
 	private static final String user = "root";
 	private static final String password = "groupOnEarth";
 	private static Connection con;
-	
-	/**
-     * DBAccess constructor. 
-     * Provides the connection to the database.
-     * 
-     * @param none.
-     * 
-     * @pre: none.
-     * @post: @param con contains connection string to the database.
-     */
-	public DBAccess()
-	{
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(url, user, password);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception cought- Connection Error");
-		}
-	}
 
 	/**
-     * Add new SystemUser to the database. 
-     * 
-     * @param SystemUser's parameters.
-     * 
-     * @pre: @param _UserName doen't exists in database.
-     * @post: SystemUser.size = @pre SystemUser.size+1
-     */
+	 * DBAccess constructor. 
+	 * Provides the connection to the database.
+	 * 
+	 * @param none.
+	 * 
+	 * @pre: none.
+	 * @post: @param con contains connection string to the database.
+	 */
+	public DBAccess()
+	{
+
+			try
+			{	
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection(url, user, password);
+
+			}
+			catch(Exception e)
+			{
+				System.out.println("DBA ACCESS: Exception cought- Connection Error");
+			}
+		
+	}
+
+
+	
+	
+	/**
+	 * Add new SystemUser to the database. 
+	 * 
+	 * @param SystemUser's parameters.
+	 * 
+	 * @pre: @param _UserName doen't exists in database.
+	 * @post: SystemUser.size = @pre SystemUser.size+1
+	 */
 	public boolean addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType)
 	{
 		CallableStatement addUser;
@@ -69,15 +76,15 @@ public class DBAccess {
 	}
 
 	/**
-     * Add new SystemUser to the database. 
-     * Add suitable client to the databse. 
-     * This is an overloading function for adding a Client SystemUser.
-     * 
-     * @param SystemUser's parameters.
-     * 
-     * @pre: @param _UserName doen't exists in database.
-     * @post: SystemUser.size = @pre SystemUser.size+1, Cliet.size= @pre Client.size+1
-     */
+	 * Add new SystemUser to the database. 
+	 * Add suitable client to the databse. 
+	 * This is an overloading function for adding a Client SystemUser.
+	 * 
+	 * @param SystemUser's parameters.
+	 * 
+	 * @pre: @param _UserName doen't exists in database.
+	 * @post: SystemUser.size = @pre SystemUser.size+1, Cliet.size= @pre Client.size+1
+	 */
 	public boolean addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType, String _Gender, int _Location, Date _DateOfBirth)
 	{
 		CallableStatement addUser;
@@ -113,13 +120,13 @@ public class DBAccess {
 	}
 
 	/**
-     * The function getClient retrieves information about a given Client.   
-     * 
-     * @param _UserName
-     * 
-     * @pre: @param _UserName exists in database.
-     * @post: none.
-     */
+	 * The function getClient retrieves information about a given Client.   
+	 * 
+	 * @param _UserName
+	 * 
+	 * @pre: @param _UserName exists in database.
+	 * @post: none.
+	 */
 	public ResultSet getClient(String _UserName)
 	{
 		CallableStatement getC;
@@ -137,13 +144,13 @@ public class DBAccess {
 	}
 
 	/**
-     * The function getUser retrieves information about a given SysemUser.   
-     * 
-     * @param _UserName
-     * 
-     * @pre: @param _UserName exists in database.
-     * @post: none.
-     */
+	 * The function getUser retrieves information about a given SysemUser.   
+	 * 
+	 * @param _UserName
+	 * 
+	 * @pre: @param _UserName exists in database.
+	 * @post: none.
+	 */
 	public ResultSet getUser(String _UserName)
 	{
 		CallableStatement getU;
@@ -161,13 +168,13 @@ public class DBAccess {
 	}
 
 	/**
-     * Delete SystemUser from the database. 
-     * 
-     * @param _UserName
-     * 
-     * @pre: @param _UserName  exists in database.
-     * @post: SystemUser.size = @pre SystemUser.size-1
-     */
+	 * Delete SystemUser from the database. 
+	 * 
+	 * @param _UserName
+	 * 
+	 * @pre: @param _UserName  exists in database.
+	 * @post: SystemUser.size = @pre SystemUser.size-1
+	 */
 	public boolean deleteUser(String _UserName)
 	{
 		CallableStatement delUser;
@@ -185,14 +192,14 @@ public class DBAccess {
 	}
 
 	/**
-     * Updating SystemUser password. 
-     * The update will be performed only if _oldPass is correct.
-     * 
-     * @param _UserName
-     * @param _oldPass
-     * @param _newPass
-     * 
-     */
+	 * Updating SystemUser password. 
+	 * The update will be performed only if _oldPass is correct.
+	 * 
+	 * @param _UserName
+	 * @param _oldPass
+	 * @param _newPass
+	 * 
+	 */
 	public boolean updatePassword(String _UserName, String _oldPass, String _newPass){
 		CallableStatement updatePass;
 		try
@@ -209,17 +216,17 @@ public class DBAccess {
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
-     * Add new Purchase to the database. 
-     * 
-     * @param _userName.
-     * @param _couponID- coupon to be purchased
-     * 
-     * @pre: @param _UserName and @param _couponID exists in database. 
-     * @post: couponpurchases.size = @pre couponpurchases.size+1
-     */
+	 * Add new Purchase to the database. 
+	 * 
+	 * @param _userName.
+	 * @param _couponID- coupon to be purchased
+	 * 
+	 * @pre: @param _UserName and @param _couponID exists in database. 
+	 * @post: couponpurchases.size = @pre couponpurchases.size+1
+	 */
 	public boolean addPurchase(String _userName, String _couponID){
 		CallableStatement addPurchase;
 		try{
@@ -232,16 +239,16 @@ public class DBAccess {
 			return false;
 		}
 	}
-	
+
 	/**
-     * Delete a purchase from the database. 
-     * 
-     * @param _userName
-     * @param _couponID
-     * 
-     * @pre: the purchase exists in database.
-     * @post: couponpurchases.size = @pre couponpurchases.size-1
-     */
+	 * Delete a purchase from the database. 
+	 * 
+	 * @param _userName
+	 * @param _couponID
+	 * 
+	 * @pre: the purchase exists in database.
+	 * @post: couponpurchases.size = @pre couponpurchases.size-1
+	 */
 	public boolean deletePurchase(String _userName, String _couponID){
 		CallableStatement deletePurchase;
 		try{
@@ -254,16 +261,16 @@ public class DBAccess {
 			return false;
 		}
 	}
-	
+
 	/**
-     * Approving a coupon.
-     * The SQL query will set the coupon 'isApproved' field to 1.
-     * 
-     * @param _couponID
-     * 
-     * @pre: the coupon exists in database.
-     * @post: couponpurchases.size = @pre couponpurchases.size-1
-     */
+	 * Approving a coupon.
+	 * The SQL query will set the coupon 'isApproved' field to 1.
+	 * 
+	 * @param _couponID
+	 * 
+	 * @pre: the coupon exists in database.
+	 * @post: couponpurchases.size = @pre couponpurchases.size-1
+	 */
 	public boolean approveCoupon(String _couponID)
 	{
 		CallableStatement approveCoupon;
@@ -276,16 +283,16 @@ public class DBAccess {
 			return false;
 		}
 	}
-	
+
 	/**
-     * De-Approving a coupon.
-     * The SQL query will set the coupon 'isApproved' field to 0.
-     * 
-     * @param _couponID
-     * 
-     * @pre: the coupon exists in database.
-     * @post: couponpurchases.size = @pre couponpurchases.size-1
-     */
+	 * De-Approving a coupon.
+	 * The SQL query will set the coupon 'isApproved' field to 0.
+	 * 
+	 * @param _couponID
+	 * 
+	 * @pre: the coupon exists in database.
+	 * @post: couponpurchases.size = @pre couponpurchases.size-1
+	 */
 	public boolean deapproveCoupon(String _couponID)
 	{
 		CallableStatement approveCoupon;
@@ -298,23 +305,23 @@ public class DBAccess {
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
-     * Generic function to execute a SQL query.
-     * 
-     * @param Query- String- a SQL query format.
-     * 
-     * @pre: none.
-     * @post: query was executed.
-     * 
-     * @return: ResultSet- the result of the query
-     */
+	 * Generic function to execute a SQL query.
+	 * 
+	 * @param Query- String- a SQL query format.
+	 * 
+	 * @pre: none.
+	 * @post: query was executed.
+	 * 
+	 * @return: ResultSet- the result of the query
+	 */
 	public ResultSet sqlQuery(String query) throws SQLException
 	{
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		return rs;
 	}
-	
+
 }

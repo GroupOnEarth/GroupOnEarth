@@ -1,0 +1,421 @@
+CREATE DATABASE group_on_earth_db; 
+DELIMITER ;
+USE group_on_earth_db;
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `systemuser`
+DELIMITER ;
+
+
+CREATE TABLE `systemuser` (
+  `UserName` varchar(50) NOT NULL,
+  `ID` varchar(50) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `FirstName` varchar(45) DEFAULT NULL,
+  `LastName` varchar(45) DEFAULT NULL,
+  `Phone` varchar(45) DEFAULT NULL,
+  `EMail` varchar(45) DEFAULT NULL,
+  `UserType` varchar(45) NOT NULL,
+  PRIMARY KEY (`UserName`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `systemuser` WRITE
+DELIMITER ;
+
+INSERT INTO `systemuser` VALUES ('carmelevi','22222','12345','carmel','levi',NULL,NULL,'Admin'),('shahafs','11111','12345','shahaf','stein',NULL,NULL,'Admin')
+DELIMITER ;
+
+UNLOCK TABLES;
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `coupon`
+DELIMITER ;
+
+
+CREATE TABLE `coupon` (
+  `ID` varchar(50) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Description` varchar(45) NOT NULL,
+  `Category` varchar(45) NOT NULL,
+  `OriginalPrice` int(11) NOT NULL,
+  `DiscountPrice` int(11) DEFAULT NULL,
+  `ExperationDate` date DEFAULT NULL,
+  `isApproved` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `coupon` WRITE
+DELIMITER ;
+
+INSERT INTO `coupon` VALUES ('11111','SunSpa','Spa','Spa',1000,500,'0000-00-00',0)
+DELIMITER ;
+
+UNLOCK TABLES;
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `business`DELIMITER ;
+
+
+CREATE TABLE `business` (
+  `Name` varchar(50) NOT NULL,
+  `Address` varchar(45) DEFAULT NULL,
+  `Description` varchar(45) DEFAULT NULL,
+  `BusinessManager_UserName` varchar(50) NOT NULL,
+  PRIMARY KEY (`Name`),
+  KEY `fk_Business_BusinessManager1_idx` (`BusinessManager_UserName`),
+  CONSTRAINT `business_manager_FK` FOREIGN KEY (`BusinessManager_UserName`) REFERENCES `systemuser` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `business` WRITE
+DELIMITER ;
+
+
+UNLOCK TABLES;
+
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `client`
+DELIMITER ;
+
+CREATE TABLE `client` (
+  `UserName` varchar(50) NOT NULL,
+  `Gender` varchar(45) DEFAULT NULL,
+  `GPSLocation` int(11) DEFAULT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  PRIMARY KEY (`UserName`),
+  CONSTRAINT `Clinet_User` FOREIGN KEY (`UserName`) REFERENCES `systemuser` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+LOCK TABLES `client` WRITE
+DELIMITER ;
+
+UNLOCK TABLES;
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `clientinterests`
+DELIMITER ;
+
+CREATE TABLE `clientinterests` (
+  `UserName` varchar(50) NOT NULL,
+  `Interest` varchar(45) NOT NULL,
+  PRIMARY KEY (`UserName`,`Interest`),
+  CONSTRAINT `Client_Interests` FOREIGN KEY (`UserName`) REFERENCES `client` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+LOCK TABLES `clientinterests` WRITE
+DELIMITER ;
+
+UNLOCK TABLES;
+
+DELIMITER ;
+
+
+DROP TABLE IF EXISTS `clientpreferences`
+DELIMITER ;
+
+CREATE TABLE `clientpreferences` (
+  `UserName` varchar(50) NOT NULL,
+  `Preference` varchar(45) NOT NULL,
+  PRIMARY KEY (`UserName`,`Preference`),
+  CONSTRAINT `Client_Preferences` FOREIGN KEY (`UserName`) REFERENCES `client` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `clientpreferences` WRITE
+DELIMITER ;
+
+UNLOCK TABLES;
+
+
+DELIMITER ;
+
+
+
+DROP TABLE IF EXISTS `couponpurchases`
+DELIMITER ;
+
+CREATE TABLE `couponpurchases` (
+  `Client_UserName` varchar(50) NOT NULL,
+  `Coupon_ID` varchar(50) NOT NULL,
+  PRIMARY KEY (`Client_UserName`,`Coupon_ID`),
+  KEY `fk_Client_has_Coupon_Coupon1_idx` (`Coupon_ID`),
+  KEY `fk_Client_has_Coupon_Client1_idx` (`Client_UserName`),
+  CONSTRAINT `fk_Client_has_Coupon_Client1` FOREIGN KEY (`Client_UserName`) REFERENCES `client` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Client_has_Coupon_Coupon1` FOREIGN KEY (`Coupon_ID`) REFERENCES `coupon` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `couponpurchases` WRITE
+DELIMITER ;
+
+UNLOCK TABLES;
+
+
+
+DELIMITER ;
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_business`(IN _Name varchar(50),IN _Address varchar(45),IN _Description varchar(45),IN _BusinessManager_UserName varchar(50))
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`business`
+(`Name`,
+`Address`,
+`Description`,
+`BusinessManager_UserName`)
+VALUES
+(_Name, 
+_Address,
+_Description,
+_BusinessManager_UserName);
+
+END ;
+DELIMITER ;
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_client`(IN _UserName varchar(50), IN _Gender varchar(45), IN _GPSLocation int(11) ,IN _DateOfBirth date)
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`client` 
+(`UserName`, `Gender`, `GPSLocation`, `DateOfBirth`) 
+VALUES (_UserName, _Gender, _GPSLocation, _DateOfBirth);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_clientinterests`(IN _UserName varchar(50), IN _Interest varchar(45) )
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`clientinterests`
+(`UserName`,
+`Interest`)
+VALUES
+(_UserName, 
+_Interest);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_clientpreferences`(IN _UserName varchar(50), IN _Preference varchar(45) )
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`clientpreferences`
+(`UserName`,
+`Preference`)
+VALUES
+(_UserName,
+_Preference);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_coupon`(IN _ID varchar(50) ,IN _Name varchar(45),
+														 IN _Description varchar(45) ,
+														 IN _Category varchar(45),
+                                                         IN _OriginalPrice int(11),
+                                                         IN _DiscountPrice int(11),
+                                                         IN _ExperationDate date,
+                                                         IN _isApproved tinyint(1))
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`coupon`
+(`ID`,
+`Name`,
+`Description`,
+`Category`,
+`OriginalPrice`,
+`DiscountPrice`,
+`ExperationDate`,
+`isApproved`)
+VALUES
+(_ID,
+_Name,
+_Description,
+_Category,
+_OriginalPrice,
+_DiscountPrice,
+_ExperationDate,
+_isApproved);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_couponpurcheses`(IN _Client_UserName varchar(50),IN _Coupon_ID varchar(50)  )
+BEGIN
+
+ INSERT INTO `group_on_earth_db`.`couponpurcheses`
+(`Client_UserName`,
+`Coupon_ID`)
+VALUES
+(_Client_UserName,
+_Coupon_ID);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_coupon_purchase`(IN _userName varchar(50), IN _couponID varchar(50))
+BEGIN
+	INSERT INTO `group_on_earth_db`.`couponpurchases`
+	(`Client_UserName`,
+	`Coupon_ID`)
+	VALUES
+	(_userName,
+	_couponID);
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_systemuser`(IN _UserName varchar(50), IN _ID varchar(45), IN _Password varchar(45), IN _FirstName varchar(45), IN _LastName varchar(45), IN _Phone varchar(45), IN _EMail varchar(45), IN _UserType varchar(45) )
+BEGIN
+ INSERT INTO `group_on_earth_db`.`systemuser` 
+			(`UserName`, `ID`, `Password`, `FirstName`, `LastName`, `Phone`, `EMail`, `UserType`) 
+    VALUES (_UserName, _ID,_Password,_FirstName,_LastName,_Phone,_EMail,_UserType);
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `approve_coupon`(IN _couponID varchar(50))
+BEGIN
+	UPDATE `group_on_earth_db`.`coupon`
+	SET
+	`isApproved` = 1
+	WHERE ID=_couponID;
+
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deapprove_coupon`(IN _couponID varchar(50))
+BEGIN
+ UPDATE `group_on_earth_db`.`coupon`
+SET
+`isApproved` = 0
+ WHERE ID=_couponID;
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_coupon_purchase`(IN _userName varchar(50), in _couponID varchar(45))
+BEGIN
+	DELETE FROM `group_on_earth_db`.`couponpurchases`
+	WHERE client_userName = _userName AND coupon_ID=_couponID;
+
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_user`(IN _userName varchar(50))
+BEGIN
+	DELETE FROM `group_on_earth_db`.`systemuser`
+	WHERE username=_username;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_admins`()
+BEGIN
+	SELECT * FROM systemuser WHERE userType='admin';
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_clients`()
+BEGIN
+	SELECT * FROM SystemUser,client WHERE systemuser.username=client.username;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_managers`()
+BEGIN
+	SELECT * FROM systemuser WHERE usertype='BusinessManager';
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_all_users`()
+BEGIN
+	SELECT * FROM SystemUser;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_client`(IN _userName varchar(50))
+BEGIN
+	SELECT * FROM systemuser where username=_username;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_client_coupon_by_id`(IN _username varchar(50), IN _couponID varchar(50))
+BEGIN
+	SELECT * FROM couponpurchases WHERE client_username=_username AND coupon_ID=_couponID;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_client_preferences`(IN _username varchar(50))
+BEGIN
+	SELECT preference FROM clientpreferences WHERE userName=_username;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_client_purchases`(IN _UserName varchar(50))
+BEGIN
+	SELECT * FROM couponpurchases WHERE client_username=_UserName;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user`(IN _username varchar(50))
+BEGIN
+	SELECT * FROM systemuser where username=_username;
+END ;
+DELIMITER ;
+
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_password`(IN _UserName varchar(50), IN _oldPass varchar(45), IN _newPass varchar(45))
+BEGIN
+	UPDATE `group_on_earth_db`.`systemuser`
+	SET
+	`Password` = _newPass
+	WHERE UserName=_UserName AND Password=_OldPass;
+
+END ;
+DELIMITER ;
