@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `group_on_earth_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `group_on_earth_db`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: group_on_earth_db
@@ -133,7 +131,7 @@ CREATE TABLE `coupon` (
   `OriginalPrice` int(11) NOT NULL,
   `DiscountPrice` int(11) DEFAULT NULL,
   `ExperationDate` date DEFAULT NULL,
-  `isApproved` tinyint(1) NOT NULL,
+  `isApproved` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -144,6 +142,7 @@ CREATE TABLE `coupon` (
 
 LOCK TABLES `coupon` WRITE;
 /*!40000 ALTER TABLE `coupon` DISABLE KEYS */;
+INSERT INTO `coupon` VALUES ('11111','SunSpa','Spa','Spa',1000,500,'0000-00-00',0);
 /*!40000 ALTER TABLE `coupon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +322,13 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_coupon`(IN _ID varchar(50) ,IN _Name varchar(45),IN _Description varchar(45) ,IN _Category varchar(45), IN _OriginalPrice int(11), IN _DiscountPrice int(11), IN _ExperationDate date, IN _isApproved tinyint(1))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_coupon`(IN _ID varchar(50) ,IN _Name varchar(45),
+														 IN _Description varchar(45) ,
+														 IN _Category varchar(45),
+                                                         IN _OriginalPrice int(11),
+                                                         IN _DiscountPrice int(11),
+                                                         IN _ExperationDate date,
+                                                         IN _isApproved tinyint(1))
 BEGIN
 
 INSERT INTO `group_on_earth_db`.`coupon`
@@ -377,6 +382,31 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_coupon_purchase` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_coupon_purchase`(IN _userName varchar(50), IN _couponID varchar(50))
+BEGIN
+	INSERT INTO `group_on_earth_db`.`couponpurchases`
+	(`Client_UserName`,
+	`Coupon_ID`)
+	VALUES
+	(_userName,
+	_couponID);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `add_systemuser` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -392,6 +422,74 @@ BEGIN
 INSERT INTO `group_on_earth_db`.`systemuser` 
 			(`UserName`, `ID`, `Password`, `FirstName`, `LastName`, `Phone`, `EMail`, `UserType`) 
     VALUES (_UserName, _ID,_Password,_FirstName,_LastName,_Phone,_EMail,_UserType);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `approve_coupon` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `approve_coupon`(IN _couponID varchar(50))
+BEGIN
+	UPDATE `group_on_earth_db`.`coupon`
+	SET
+	`isApproved` = 1
+	WHERE ID=_couponID;
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `deapprove_coupon` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deapprove_coupon`(IN _couponID varchar(50))
+BEGIN
+UPDATE `group_on_earth_db`.`coupon`
+SET
+`isApproved` = 0
+WHERE ID=_couponID;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_coupon_purchase` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_coupon_purchase`(IN _userName varchar(50), in _couponID varchar(45))
+BEGIN
+	DELETE FROM `group_on_earth_db`.`couponpurchases`
+	WHERE client_userName = _userName AND coupon_ID=_couponID;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -599,12 +697,12 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_password`(IN _username varchar(50), IN _password varchar(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_password`(IN _UserName varchar(50), IN _oldPass varchar(45), IN _newPass varchar(45))
 BEGIN
-	UPDATE `group_on_earth_db`.`Password`
-SET
-`Password` = _password
-WHERE username=_username;
+	UPDATE `group_on_earth_db`.`systemuser`
+	SET
+	`Password` = _newPass
+	WHERE UserName=_UserName AND Password=_OldPass;
 
 END ;;
 DELIMITER ;
@@ -622,4 +720,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-16 22:01:07
+-- Dump completed on 2015-04-18 21:56:29
