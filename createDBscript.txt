@@ -36,35 +36,6 @@ UNLOCK TABLES;
 DELIMITER ;
 
 
-DROP TABLE IF EXISTS `coupon`
-DELIMITER ;
-
-
-CREATE TABLE `coupon` (
-  `ID` varchar(50) NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Description` varchar(45) NOT NULL,
-  `Category` varchar(45) NOT NULL,
-  `OriginalPrice` int(11) NOT NULL,
-  `DiscountPrice` int(11) DEFAULT NULL,
-  `ExperationDate` date DEFAULT NULL,
-  `isApproved` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-DELIMITER ;
-
-
-
-LOCK TABLES `coupon` WRITE
-DELIMITER ;
-
-INSERT INTO `coupon` VALUES ('11111','SunSpa','Spa','Spa',1000,500,'0000-00-00',0)
-DELIMITER ;
-
-UNLOCK TABLES;
-
-DELIMITER ;
-
 
 DROP TABLE IF EXISTS `business`DELIMITER ;
 
@@ -85,11 +56,49 @@ DELIMITER ;
 LOCK TABLES `business` WRITE
 DELIMITER ;
 
+INSERT INTO `business` VALUES ('Try','israel','spaaa','Shahafs')
+DELIMITER ;
+
 
 UNLOCK TABLES;
 
 
+
 DELIMITER ;
+
+DROP TABLE IF EXISTS `coupon`
+DELIMITER ;
+
+CREATE TABLE `coupon` (
+  `ID` varchar(50) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Description` varchar(45) NOT NULL,
+  `Category` varchar(45) NOT NULL,
+  `OriginalPrice` int(11) NOT NULL,
+  `DiscountPrice` int(11) DEFAULT NULL,
+  `ExperationDate` date DEFAULT NULL,
+  `isApproved` tinyint(1) NOT NULL,
+  `BusinessName` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `BelongsToBusiness_idx` (`BusinessName`),
+  CONSTRAINT `BelongsToBusiness` FOREIGN KEY (`BusinessName`) REFERENCES `business` (`Name`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+DELIMITER ;
+
+
+
+LOCK TABLES `coupon` WRITE
+DELIMITER ;
+INSERT INTO `coupon` VALUES ('11111','spa','spa','spa',1000,500,'0000-00-00',0,'Try')
+
+DELIMITER ;
+
+UNLOCK TABLES;
+
+DELIMITER ;
+
+
+
 
 
 DROP TABLE IF EXISTS `client`
