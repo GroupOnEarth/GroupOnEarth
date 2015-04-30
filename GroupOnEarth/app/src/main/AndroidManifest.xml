@@ -21,6 +21,10 @@
             android:name=".PresentationLayer.AdminMenu"
             android:label="@string/title_activity_admin_menu" >
         </activity>
+        <activity
+            android:name=".PresentationLayer.ClientMenu"
+            android:label="@string/title_activity_client_menu" >
+        </activity>
     </application>
 
 </manifest>

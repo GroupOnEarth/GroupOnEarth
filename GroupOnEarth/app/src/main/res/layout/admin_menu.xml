@@ -1,70 +1,98 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/primary_material_light"
-    tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.AdminMenu">
-
-
+    tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.AdminMenu"
+    android:backgroundTint="#000000"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:scrollHorizontally="false"
+        android:textColor="#FFFFFF"
         android:textSize="45sp"
         android:id="@+id/txtHeader"
+        android:text="Hello Admin"
+        android:gravity="center"
         android:typeface="serif"/>
 
-    <Button
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:text="Manage\n Coupons"
-        android:id="@+id/btnMngCoupons"
-        android:layout_marginTop="81dp"
-        android:layout_below="@+id/txtHeader"
-        android:layout_toLeftOf="@+id/txtHeader"
-        android:layout_toStartOf="@+id/txtHeader" />
+    <RelativeLayout
+        android:layout_width="363dp"
+        android:layout_height="426dp">
 
-    <Button
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:text="Waiting for\nApproval"
-        android:id="@+id/btnApprove"
-        android:layout_alignTop="@+id/btnMngCoupons"
-        android:layout_toRightOf="@+id/btnMngCoupons"
-        android:layout_toEndOf="@+id/btnMngCoupons"
-        android:layout_alignBottom="@+id/btnMngCoupons" />
+    <RelativeLayout
+        android:layout_width="363dp"
+        android:layout_height="426dp"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Add New\nBusiness"
+            android:id="@+id/btnNewBusiness"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="43dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="53dp"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:text="Businesses\nManagement"
-        android:id="@+id/btnMngBusiness"
-        android:layout_below="@+id/btnMngCoupons"
-        android:layout_toLeftOf="@+id/btnApprove"
-        android:layout_alignLeft="@+id/btnMngCoupons"
-        android:layout_alignStart="@+id/btnMngCoupons" />
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Waiting for\nApproval"
+            android:id="@+id/btnApprove"
+            android:layout_alignTop="@+id/btnNewBusiness"
+            android:layout_toRightOf="@+id/btnNewBusiness"
+            android:layout_toEndOf="@+id/btnNewBusiness"
+            android:textSize="15sp"
+            android:typeface="serif"/>
 
-    <Button
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:text="Manage\nUsers"
-        android:id="@+id/btnMngUsers"
-        android:layout_alignTop="@+id/btnMngBusiness"
-        android:layout_toRightOf="@+id/txtHeader"
-        android:layout_alignBottom="@+id/btnMngBusiness"
-        android:layout_alignRight="@+id/btnApprove"
-        android:layout_alignEnd="@+id/btnApprove" />
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Businesses\nManagement"
+            android:id="@+id/btnMngBusiness"
+            android:layout_below="@+id/btnNewBusiness"
+            android:layout_toLeftOf="@+id/btnApprove"
+            android:layout_toStartOf="@+id/btnApprove"
+            android:textSize="14sp"
+            android:typeface="serif"/>
 
-    <Button
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:text="Add New\nCoupon"
-        android:id="@+id/button"
-        android:layout_below="@+id/btnMngBusiness"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Manage\nCoupons"
+            android:id="@+id/btnMngCoupons"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_above="@+id/btnMngUsers"
+            android:layout_alignLeft="@+id/btnApprove"
+            android:layout_alignStart="@+id/btnApprove"
+            android:layout_alignBottom="@id/btnMngBusiness"/>
 
-</RelativeLayout>
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Manage\nUsers"
+            android:id="@+id/btnMngUsers"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="100dp" />
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+

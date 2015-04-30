@@ -8,30 +8,27 @@ import android.widget.TextView;
 
 import com.grouponearth.avi.grouponearth.R;
 
-public class AdminMenu extends ActionBarActivity {
+public class ClientMenu extends ActionBarActivity {
 
     private String _userName;
     private TextView header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_menu);
+        setContentView(R.layout.client_menu);
         header = (TextView)findViewById(R.id.txtHeader);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             _userName = extras.getString("userName");
             header.setText("Hello "+_userName);
         }
-
-
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_admin_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_client_menu, menu);
         return true;
     }
 
