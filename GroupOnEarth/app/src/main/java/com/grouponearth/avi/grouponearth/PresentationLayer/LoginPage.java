@@ -45,16 +45,19 @@ public class LoginPage extends Activity implements View.OnClickListener {
         btnLogin = (Button)v;
         inputUserName   = (EditText)findViewById(R.id.inputUserName);
         inputPassword   = (EditText)findViewById(R.id.inputPass);
+        bl = new BL();
         String uName = inputUserName.getText().toString();
         String pass = inputPassword.getText().toString();
         String userType = "";
         if(!("".equals(uName)) & !("".equals(pass))){
+            Log.d("TKT", "inserted non empty user name and pass");
             if(!(userType = bl.confirmLogin(uName, pass)).equals(""))
             {
                 if(userType.equals("Admin"))
                 {
                     Log.d("hellooooo","helllo");
                     Intent intent = new Intent(this, AdminMenu.class);
+                    intent.putExtra("userName", uName);
                     startActivity(intent);
                 }
                 else if(userType.equals("BusinessManager"))
@@ -98,12 +101,15 @@ public class LoginPage extends Activity implements View.OnClickListener {
         {
             case R.id.btnLogin:
                 onClickLogin(v);
+                Log.d("TKT", "clicked login");
                 break;
             case R.id.btnRegister:
                 onClickRegister(v);
+                Log.d("TKT", "clicked register");
                 break;
             case R.id.btnForgotPass:
                 onClickForgotPass(v);
+                Log.d("TKT", "clicked pass");
                 break;
         }
 
