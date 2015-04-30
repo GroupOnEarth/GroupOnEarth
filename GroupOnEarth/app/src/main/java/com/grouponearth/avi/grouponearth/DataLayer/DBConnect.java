@@ -6,10 +6,12 @@ import java.sql.DriverManager;
 /**
  * Created by Avi on 29/04/2015.
  */
+
+
 public class DBConnect {
-    private static final String url = "jdbc:mysql://localhost:3306/group_on_earth_db";
-    private static final String user = "root";
-    private static final String password = "groupOnEarth";
+    private static final String url = "jdbc:mysql://grouponearth.cokwpobid1ly.us-west-2.rds.amazonaws.com:3306/GroupOnEarth";
+    private static final String user = "shahaf";
+    private static final String password = "grouponearth";
     private static Connection con;
 
 
