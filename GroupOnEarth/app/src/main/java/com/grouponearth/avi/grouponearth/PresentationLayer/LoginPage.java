@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
 
@@ -52,6 +53,7 @@ public class LoginPage extends Activity implements View.OnClickListener {
             {
                 if(userType.equals("Admin"))
                 {
+                    Log.d("hellooooo","helllo");
                     Intent intent = new Intent(this, AdminMenu.class);
                     startActivity(intent);
                 }
@@ -84,6 +86,10 @@ public class LoginPage extends Activity implements View.OnClickListener {
     protected void onClickForgotPass(View v){
         btnForgotPass = (Button)v;
         btnForgotPass.setText("clicked");
+        Intent intent = new Intent(this, ForgotYourPasswordPage.class);
+       // intent.putExtra("IBL", (java.io.Serializable) bl);
+        startActivity(intent);
+
     }
 
     @Override
