@@ -4,6 +4,10 @@
     android:layout_height="match_parent" android:background="#000000">
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +18,8 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:typeface="serif"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,9 +69,9 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Forgot Your Password?"
-        android:id="@+id/btnNewPass"
-        android:layout_below="@+id/btnLogin"
-        android:layout_centerHorizontal="true"/>
+        android:id="@+id/btnForgotPass"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="200dp"
@@ -75,6 +80,17 @@
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignRight="@+id/editText"
         android:layout_alignEnd="@+id/editText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/btnRegister"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignRight="@+id/btnLogin"
+        android:layout_alignEnd="@+id/btnLogin"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_alignStart="@+id/btnLogin" />
 
 
 </RelativeLayout>

@@ -5,7 +5,7 @@ import java.sql.Connection;
 /**
  * Created by Avi on 29/04/2015.
  */
-public class DAL {
+public class DAL implements IDAL{
     private DBConnect dbConnect;
 
     public DAL()

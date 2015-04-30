@@ -1,4 +1,4 @@
-package com.grouponearth.avi.grouponearth;
+package com.grouponearth.avi.grouponearth.DataLayer;
 
 import java.sql.Date;
 
