@@ -55,6 +55,7 @@ public class LoginPage extends Activity implements View.OnClickListener {
             {
                 if(userType.equals("Admin"))
                 {
+                    Log.d("hellooooo","helllo");
                     Intent intent = new Intent(this, AdminMenu.class);
                     intent.putExtra("userName", uName);
                     startActivity(intent);
@@ -88,6 +89,10 @@ public class LoginPage extends Activity implements View.OnClickListener {
     protected void onClickForgotPass(View v){
         btnForgotPass = (Button)v;
         btnForgotPass.setText("clicked");
+        Intent intent = new Intent(this, ForgotYourPasswordPage.class);
+       // intent.putExtra("IBL", (java.io.Serializable) bl);
+        startActivity(intent);
+
     }
 
     @Override
