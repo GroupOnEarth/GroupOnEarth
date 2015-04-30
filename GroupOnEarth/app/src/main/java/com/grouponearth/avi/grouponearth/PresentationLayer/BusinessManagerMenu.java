@@ -6,31 +6,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.grouponearth.avi.grouponearth.R;
 
-public class ClientMenu extends ActionBarActivity {
+public class BusinessManagerMenu extends ActionBarActivity {
 
-    private String _userName;
-    private TextView header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_menu);
-        header = (TextView)findViewById(R.id.txtHeader);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            _userName = extras.getString("userName");
-            header.setText("Hello "+_userName);
-        }
+        setContentView(R.layout.business_manager_menu);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_client_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_business_manager_menu, menu);
         return true;
     }
 

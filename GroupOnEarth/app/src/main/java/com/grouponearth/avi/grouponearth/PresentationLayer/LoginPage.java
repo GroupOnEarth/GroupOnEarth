@@ -53,6 +53,8 @@ public class LoginPage extends Activity implements View.OnClickListener {
             Log.d("TKT", "inserted non empty user name and pass");
             if(!(userType = bl.confirmLogin(uName, pass)).equals(""))
             {
+                inputUserName.setText("");
+                inputPassword.setText("");
                 if(userType.equals("Admin"))
                 {
                     Log.d("hellooooo","helllo");
@@ -62,11 +64,15 @@ public class LoginPage extends Activity implements View.OnClickListener {
                 }
                 else if(userType.equals("BusinessManager"))
                 {
-
+                    Intent intent = new Intent(this, BusinessManagerMenu.class);
+                    intent.putExtra("userName", uName);
+                    startActivity(intent);
                 }
                 else if(userType.equals("Client"))
                 {
-
+                    Intent intent = new Intent(this, ClientMenu.class);
+                    intent.putExtra("userName", uName);
+                    startActivity(intent);
                 }
                 else
                 {

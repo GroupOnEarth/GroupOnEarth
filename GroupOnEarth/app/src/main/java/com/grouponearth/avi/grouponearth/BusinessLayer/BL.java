@@ -8,7 +8,7 @@ import android.util.Log;
 public class BL implements IBL {
     @Override
     public String confirmLogin(String userName, String password) {
-        return "Admin";
+        return "BusinessManager";
     }
 
     public void test()
