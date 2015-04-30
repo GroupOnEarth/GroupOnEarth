@@ -4,9 +4,67 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/primary_material_light"
     tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.AdminMenu">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="45sp"
+        android:id="@+id/txtHeader"
+        android:typeface="serif"/>
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:text="Manage\n Coupons"
+        android:id="@+id/btnMngCoupons"
+        android:layout_marginTop="81dp"
+        android:layout_below="@+id/txtHeader"
+        android:layout_toLeftOf="@+id/txtHeader"
+        android:layout_toStartOf="@+id/txtHeader" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:text="Waiting for\nApproval"
+        android:id="@+id/btnApprove"
+        android:layout_alignTop="@+id/btnMngCoupons"
+        android:layout_toRightOf="@+id/btnMngCoupons"
+        android:layout_toEndOf="@+id/btnMngCoupons"
+        android:layout_alignBottom="@+id/btnMngCoupons" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:text="Businesses\nManagement"
+        android:id="@+id/btnMngBusiness"
+        android:layout_below="@+id/btnMngCoupons"
+        android:layout_toLeftOf="@+id/btnApprove"
+        android:layout_alignLeft="@+id/btnMngCoupons"
+        android:layout_alignStart="@+id/btnMngCoupons" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:text="Manage\nUsers"
+        android:id="@+id/btnMngUsers"
+        android:layout_alignTop="@+id/btnMngBusiness"
+        android:layout_toRightOf="@+id/txtHeader"
+        android:layout_alignBottom="@+id/btnMngBusiness"
+        android:layout_alignRight="@+id/btnApprove"
+        android:layout_alignEnd="@+id/btnApprove" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:text="Add New\nCoupon"
+        android:id="@+id/button"
+        android:layout_below="@+id/btnMngBusiness"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

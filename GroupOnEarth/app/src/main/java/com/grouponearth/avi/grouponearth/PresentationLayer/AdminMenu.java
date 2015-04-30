@@ -4,15 +4,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.grouponearth.avi.grouponearth.R;
 
 public class AdminMenu extends ActionBarActivity {
 
+    private String _userName;
+    private TextView header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_menu);
+        header = (TextView)findViewById(R.id.txtHeader);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            _userName = extras.getString("userName");
+            header.setText("Hello "+_userName);
+        }
+
+
     }
 
 

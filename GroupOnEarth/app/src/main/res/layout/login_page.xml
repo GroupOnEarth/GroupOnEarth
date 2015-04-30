@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textSize="50sp"
+        android:textSize="45sp"
         android:textColor="#006699"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
@@ -29,22 +29,51 @@
         android:layout_marginTop="161dp"
         android:textColor="#FFFFFF"
         android:layout_below="@+id/textView"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignRight="@+id/txtPass"
+        android:layout_alignEnd="@+id/txtPass"
         android:layout_marginBottom="10dp"
-        android:id="@+id/textView3" />
+        android:id="@+id/txtUName" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password:"
         android:textSize="20sp"
         android:layout_marginLeft="30dp"
-        android:id="@+id/textView2"
+        android:id="@+id/txtPass"
         android:layout_marginStart="46dp"
         android:textColor="#FFFFFF"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:id="@+id/btnLogin"
+        android:layout_below="@+id/inputPass"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Forgot Your Password?"
+        android:id="@+id/btnForgotPass"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/inputUserName"
+        android:layout_alignBaseline="@+id/txtUName"
+        android:layout_alignBottom="@+id/txtUName"
+        android:layout_alignEnd="@+id/inputPass"
+        android:layout_alignRight="@+id/inputPass"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,33 +82,9 @@
         android:ems="10"
         android:id="@+id/inputPass"
         android:layout_gravity="right"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
-
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="login"
-        android:id="@+id/btnLogin"
-        android:layout_below="@+id/inputPass"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Forgot Your Password?"
-        android:id="@+id/btnForgotPass"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputUserName"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignRight="@+id/inputPass"
-        android:layout_alignEnd="@+id/inputPass" />
+        android:layout_alignTop="@+id/txtPass"
+        android:layout_toRightOf="@+id/txtPass"
+        android:layout_toEndOf="@+id/txtPass" />
 
     <Button
         android:layout_width="wrap_content"
@@ -90,7 +95,8 @@
         android:layout_alignRight="@+id/btnLogin"
         android:layout_alignEnd="@+id/btnLogin"
         android:layout_alignLeft="@+id/btnLogin"
-        android:layout_alignStart="@+id/btnLogin" />
+        android:layout_alignStart="@+id/btnLogin"
+        android:onClick="onClick" />
 
 
 </RelativeLayout>
