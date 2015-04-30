@@ -2,12 +2,14 @@ package com.grouponearth.avi.grouponearth.PresentationLayer;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
 
 import java.sql.Connection;
@@ -21,6 +23,7 @@ import java.sql.Statement;
  */
 public class LoginPage extends Activity implements View.OnClickListener {
 
+    private IBL bl;
     private EditText inputUserName;
     private EditText inputPassword;
     private Button btnLogin;
@@ -39,7 +42,37 @@ public class LoginPage extends Activity implements View.OnClickListener {
 
     protected void onClickLogin(View v){
         btnLogin = (Button)v;
-        btnLogin.setText("clicked");
+        inputUserName   = (EditText)findViewById(R.id.inputUserName);
+        inputPassword   = (EditText)findViewById(R.id.inputPass);
+        String uName = inputUserName.getText().toString();
+        String pass = inputPassword.getText().toString();
+        String userType = "";
+        if(!("".equals(uName)) & !("".equals(pass))){
+            if(!(userType = bl.confirmLogin(uName, pass)).equals(""))
+            {
+                if(userType.equals("Admin"))
+                {
+                    Intent intent = new Intent(this, AdminMenu.class);
+                    startActivity(intent);
+                }
+                else if(userType.equals("BusinessManager"))
+                {
+
+                }
+                else if(userType.equals("Client"))
+                {
+
+                }
+                else
+                {
+                    Log.e("ERROR", "No such user type");
+                }
+            }
+            else
+            {
+
+            }
+        }
 
     }
 
