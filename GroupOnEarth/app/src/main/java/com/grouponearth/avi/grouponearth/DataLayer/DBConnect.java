@@ -1,56 +1,36 @@
 package com.grouponearth.avi.grouponearth.DataLayer;
-
+import android.os.AsyncTask;
 import android.util.Log;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-
-
-/**
- * Created by Avi on 29/04/2015.
- */
-
-
-public class DBConnect {
-    private static final String url = "jdbc:mysql://localhost:3306/group_on_earth_db";
-    private static final String user = "root";
-    private static final String password = "MCSG";
-    private static Connection con;
-
-
-
-    public DBConnect()
-    {
-
+class DBConnect extends AsyncTask {
+    private static final String url = "jdbc:mysql://grouponearth.cokwpobid1ly.us-west-2.rds.amazonaws.com:3306/GroupOnEarth";
+    private static final String user = "shahaf";
+    private static final String password = "grouponearth";
+    public static Connection con;
+    protected Object doInBackground(Object[] params) {
         try
         {
-            Connection conn = null;
             try {
-                Class.forName ("com.mysql.jdbc.Driver").newInstance();
+                System.out.println("Hello");
+                Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
+                Connection tmp = con;
 
-
-                conn.close();
+                Log.d("TXT", "*******here");
             } catch (Exception e)
             {
-                Log.d("TXT", "Error");
+                e.printStackTrace();
             }
-
-
-            //Class.forName("com.mysql.jdbc.Driver");
-            //con = DriverManager.getConnection(url, user, password);
-
         }
         catch(Exception e)
         {
             System.out.println("DBA ACCESS: Exception cought- Connection Error");
         }
-
+        return con;
     }
-    public Connection getConnection(){
+    public Connection getConnection()
+    {
         return con;
     }
 }

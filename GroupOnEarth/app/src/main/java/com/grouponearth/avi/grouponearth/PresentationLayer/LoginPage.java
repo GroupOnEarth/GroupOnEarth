@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
@@ -90,6 +91,16 @@ public class LoginPage extends Activity implements View.OnClickListener {
     protected void onClickRegister(View v){
         btnRegister = (Button)v;
         btnRegister.setText("clicked");
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"shahafstein@gmail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+        i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void onClickForgotPass(View v){

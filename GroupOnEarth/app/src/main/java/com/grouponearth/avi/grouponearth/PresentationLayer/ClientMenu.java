@@ -1,13 +1,16 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
+import android.graphics.Paint;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.grouponearth.avi.grouponearth.FontFitTextView;
 import com.grouponearth.avi.grouponearth.R;
 
 public class ClientMenu extends ActionBarActivity {
@@ -61,6 +64,8 @@ public class ClientMenu extends ActionBarActivity {
         }
 
     }
+
+
 
     public void onClickLogout(){
         this.onBackPressed();

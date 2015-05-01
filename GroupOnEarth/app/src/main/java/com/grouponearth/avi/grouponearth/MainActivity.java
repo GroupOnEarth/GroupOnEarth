@@ -1,8 +1,10 @@
 package com.grouponearth.avi.grouponearth;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -23,8 +25,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        /*dal = new DAL();*/
         setContentView(R.layout.activity_main);
-        dal = new DAL();
+
 
 
         Intent intent = new Intent(MainActivity.this, LoginPage.class);

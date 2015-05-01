@@ -31,6 +31,15 @@
             android:name=".PresentationLayer.BusinessManagerMenu"
             android:label="@string/title_activity_business_manager_menu" >
         </activity>
+        <activity android:name=".PresentationLayer.ForgotYourPasswordPage" />
+        <activity
+            android:name=".PresentationLayer.SearchCoupons"
+            android:label="@string/title_activity_search_coupons" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.CouponPage"
+            android:label="@string/title_activity_coupon_page" >
+        </activity>
     </application>
 
 </manifest>

@@ -6,4 +6,6 @@
     <string name="title_activity_admin_menu">AdminMenu</string>
     <string name="title_activity_client_menu">ClientMenu</string>
     <string name="title_activity_business_manager_menu">BusinessManagerMenu</string>
+    <string name="title_activity_search_coupons">SearchCoupons</string>
+    <string name="title_activity_coupon_page">CouponPage</string>
 </resources>

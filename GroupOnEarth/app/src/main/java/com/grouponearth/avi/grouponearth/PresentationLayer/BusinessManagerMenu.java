@@ -6,15 +6,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.grouponearth.avi.grouponearth.R;
 
+import org.w3c.dom.Text;
+
 public class BusinessManagerMenu extends ActionBarActivity {
+
+    private TextView txtHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_manager_menu);
+        txtHeader = (TextView)findViewById(R.id.txtHeader);
     }
 
 
@@ -56,4 +62,24 @@ public class BusinessManagerMenu extends ActionBarActivity {
     public void onClickLogout(){
         this.onBackPressed();
     }
+
+    public String fitText(String s, TextView v){
+        while(s.contains("\n")){
+            s = deleteEnter(s);
+            v.setTextSize(v.getTextSize()-1);
+            v.setText(s);
+        }
+        return s;
+
+    }
+
+    public String deleteEnter(String s){
+        if(s.contains("\n")){
+            int index = s.indexOf('\n');
+            s = s.substring(0,index) + " " + s.substring(index+1);
+        }
+        return s;
+    }
+
+
 }

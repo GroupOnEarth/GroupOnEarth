@@ -1,6 +1,7 @@
 package com.grouponearth.avi.grouponearth.BusinessLayer;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
 
 /**
  * Created by WIN8 on 30/04/2015.
@@ -15,5 +16,6 @@ public interface IBL{
      */
     public String confirmLogin(String userName, String password);
 
+    public ResultSet getCouponByID(String couponID);
     public void test();
 }

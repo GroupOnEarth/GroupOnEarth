@@ -1,45 +1,45 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
+import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
 
-public class ForgotYourPasswordPage extends ActionBarActivity {
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+public class CouponPage extends ActionBarActivity {
     private IBL bl;
-    private EditText inputMail;
+    private String _couponID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_your_password_page);
+        setContentView(R.layout.coupon_page);
+        bl = new BL();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            _couponID = extras.getString("userName");
+        }
+        ResultSet coupon = bl.getCouponByID(_couponID);
+        try {
+            coupon.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-       // Intent intent= getIntent();
-      //  Bundle b = getIntent().getExtras();
-     //   bl = (IBL) intent.getSerializableExtra("IBL");
-      //  bl.test();
-    }
 
-
-    public void sendButtonClicked(View v) {
-        inputMail = (EditText)findViewById(R.id.inputMail);
-        inputMail.getText().toString();
-        Toast.makeText(this, "Mail was sent", Toast.LENGTH_LONG).show();
-        this.onBackPressed();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_forgot_your_password_page, menu);
+        getMenuInflater().inflate(R.menu.menu_coupon_page, menu);
         return true;
     }
 
@@ -56,9 +56,5 @@ public class ForgotYourPasswordPage extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onDestroy(){
-        this.onBackPressed();
     }
 }
