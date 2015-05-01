@@ -22,7 +22,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.0'
+<<<<<<< HEAD
     compile files('C:/Users/WIN8/Documents/GroupOnEarth/GroupOnEarth/libs/activation.jar')
     compile files('C:/Users/WIN8/Documents/GroupOnEarth/GroupOnEarth/libs/mail.jar')
     compile files('C:/Users/WIN8/Documents/GroupOnEarth/GroupOnEarth/libs/mysql-connector-java-3.1.14-bin.jar')
+=======
+    compile files('libs/mysql-connector-java-3.1.14-bin.jar')
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
 }

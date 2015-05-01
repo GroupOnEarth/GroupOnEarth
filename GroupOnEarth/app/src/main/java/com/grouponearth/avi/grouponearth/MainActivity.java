@@ -1,9 +1,16 @@
 package com.grouponearth.avi.grouponearth;
 
 import android.content.Intent;
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
+=======
+import android.os.StrictMode;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.util.Log;
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -30,7 +37,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
+=======
+        /*dal = new DAL();*/
+        setContentView(R.layout.activity_main);
+
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
 
         dal = new DAL();
         bl= new BL(dal);

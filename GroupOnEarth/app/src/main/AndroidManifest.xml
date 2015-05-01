@@ -3,6 +3,7 @@
     package="com.grouponearth.avi.grouponearth" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +28,21 @@
             android:label="@string/title_activity_client_menu" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".PresentationLayer.ForgotYourPasswordPage" >
+=======
+            android:name=".PresentationLayer.BusinessManagerMenu"
+            android:label="@string/title_activity_business_manager_menu" >
+        </activity>
+        <activity android:name=".PresentationLayer.ForgotYourPasswordPage" />
+        <activity
+            android:name=".PresentationLayer.SearchCoupons"
+            android:label="@string/title_activity_search_coupons" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.CouponPage"
+            android:label="@string/title_activity_coupon_page" >
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
         </activity>
     </application>
 

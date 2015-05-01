@@ -88,7 +88,10 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="mail" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="activation" level="project" />
+=======
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
     <orderEntry type="library" exported="" name="mysql-connector-java-3.1.14-bin" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
   </component>

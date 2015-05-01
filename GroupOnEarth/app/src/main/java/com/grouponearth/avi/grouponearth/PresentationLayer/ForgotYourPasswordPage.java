@@ -34,6 +34,7 @@ public class ForgotYourPasswordPage extends ActionBarActivity {
 
     public void sendButtonClicked(View v) {
         inputMail = (EditText)findViewById(R.id.inputMail);
+<<<<<<< HEAD
         mailAddress= inputMail.getText().toString();
         if ( bl.isMailExists(mailAddress))
         {
@@ -57,6 +58,11 @@ public class ForgotYourPasswordPage extends ActionBarActivity {
             msg.setSpan(new ForegroundColorSpan(Color.RED), 0, 18, 0);
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }
+=======
+        inputMail.getText().toString();
+        Toast.makeText(this, "Mail was sent", Toast.LENGTH_LONG).show();
+        this.onBackPressed();
+>>>>>>> dde6ebd64ee5f46ce85188de2b45d0d25998cb8d
     }
 
 
@@ -80,5 +86,9 @@ public class ForgotYourPasswordPage extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDestroy(){
+        this.onBackPressed();
     }
 }

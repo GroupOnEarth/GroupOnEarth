@@ -2,8 +2,11 @@ package com.grouponearth.avi.grouponearth.PresentationLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.grouponearth.avi.grouponearth.R;
@@ -12,6 +15,7 @@ public class AdminMenu extends ActionBarActivity {
 
     private String _userName;
     private TextView header;
+    private Button btnLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +26,6 @@ public class AdminMenu extends ActionBarActivity {
             _userName = extras.getString("userName");
             header.setText("Hello "+_userName);
         }
-
-
 
     }
 
@@ -48,5 +50,26 @@ public class AdminMenu extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btnLogout:
+                onClickLogout();
+                Log.d("TKT", "clicked login");
+                break;
+
+        }
+
+    }
+
+    public void onClickLogout(){
+        this.onBackPressed();
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
     }
 }

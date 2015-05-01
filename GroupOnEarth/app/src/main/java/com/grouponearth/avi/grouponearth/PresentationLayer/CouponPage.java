@@ -1,39 +1,45 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
-import android.graphics.Paint;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import com.grouponearth.avi.grouponearth.FontFitTextView;
+import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
+import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
 
-public class ClientMenu extends ActionBarActivity {
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-    private String _userName;
-    private TextView header;
+public class CouponPage extends ActionBarActivity {
+    private IBL bl;
+    private String _couponID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_menu);
-        header = (TextView)findViewById(R.id.txtHeader);
+        setContentView(R.layout.coupon_page);
+        bl = new BL();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            _userName = extras.getString("userName");
-            header.setText("Hello "+_userName);
+            _couponID = extras.getString("userName");
         }
+        ResultSet coupon = bl.getCouponByID(_couponID);
+        try {
+            coupon.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_client_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_coupon_page, menu);
         return true;
     }
 
@@ -50,24 +56,5 @@ public class ClientMenu extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.btnLogout:
-                onClickLogout();
-                Log.d("TKT", "clicked logout");
-                break;
-
-        }
-
-    }
-
-
-
-    public void onClickLogout(){
-        this.onBackPressed();
     }
 }

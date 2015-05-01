@@ -2,6 +2,8 @@ package com.grouponearth.avi.grouponearth.BusinessLayer;
 
 import com.grouponearth.avi.grouponearth.DataLayer.IDAL;
 
+import java.sql.ResultSet;
+
 /**
  * Created by Avi on 30/04/2015.
  */
@@ -18,7 +20,13 @@ public class BL implements IBL {
     }
 
     public String confirmLogin(String userName, String password) {
-        return "Admin";
+
+        return "Client";
+    }
+
+    @Override
+    public ResultSet getCouponByID(String couponID) {
+        return null;
     }
 
 
