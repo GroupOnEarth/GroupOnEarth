@@ -1,7 +1,6 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +11,6 @@ import android.widget.EditText;
 import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Created by Avi on 29/04/2015.
@@ -32,13 +25,10 @@ public class LoginPage extends Activity implements View.OnClickListener {
     private Button btnForgotPass;
 
 
-
-
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
-
-
+        bl = new BL();
     }
 
     protected void onClickLogin(View v){
@@ -90,7 +80,6 @@ public class LoginPage extends Activity implements View.OnClickListener {
         btnForgotPass = (Button)v;
         btnForgotPass.setText("clicked");
         Intent intent = new Intent(this, ForgotYourPasswordPage.class);
-       // intent.putExtra("IBL", (java.io.Serializable) bl);
         startActivity(intent);
 
     }

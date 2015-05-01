@@ -1,37 +1,62 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
 import com.grouponearth.avi.grouponearth.R;
+import com.grouponearth.avi.grouponearth.SendMailTask;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ForgotYourPasswordPage extends ActionBarActivity {
 
     private IBL bl;
     private EditText inputMail;
+    private String mailAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_your_password_page);
-
-       // Intent intent= getIntent();
-      //  Bundle b = getIntent().getExtras();
-     //   bl = (IBL) intent.getSerializableExtra("IBL");
-      //  bl.test();
+        bl = new BL();
     }
 
 
     public void sendButtonClicked(View v) {
         inputMail = (EditText)findViewById(R.id.inputMail);
-        inputMail.getText().toString();
-        Toast.makeText(this, "Mail was sent", Toast.LENGTH_LONG).show();
+        mailAddress= inputMail.getText().toString();
+        if ( bl.isMailExists(mailAddress))
+        {
+
+            String fromEmail = "GroupOnEarth@gmail.com";
+            String fromPassword = "grouponearth1";
+            String toEmails = mailAddress;
+            List<String> toEmailList = Arrays.asList(toEmails.split("\\s*,\\s*"));
+            String emailSubject = "Password Remainder";
+            String emailBody = "HELLO";
+            new SendMailTask(this).execute(fromEmail,fromPassword, toEmailList, emailSubject, emailBody);
+
+
+
+
+            Toast.makeText(this, "Mail was sent", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            SpannableString msg = new SpannableString("User Doesn't Exist");
+            msg.setSpan(new ForegroundColorSpan(Color.RED), 0, 18, 0);
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }
     }
 
 

@@ -26,6 +26,9 @@
             android:name=".PresentationLayer.ClientMenu"
             android:label="@string/title_activity_client_menu" >
         </activity>
+        <activity
+            android:name=".PresentationLayer.ForgotYourPasswordPage" >
+        </activity>
     </application>
 
 </manifest>
