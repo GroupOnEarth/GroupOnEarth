@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GroupOnEarth</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login_page">LoginPage</string>
+    <string name="title_activity_admin_menu">AdminMenu</string>
+    <string name="title_activity_business_manager_menu">BusinessManagerMenu</string>
+    <string name="title_activity_client_menu">ClientMenu</string>
+    <string name="title_activity_forgot_your_password_page">ForgotYourPasswordPage</string>
+    <string name="title_activity_coupon_page">CouponPage</string>
+</resources>

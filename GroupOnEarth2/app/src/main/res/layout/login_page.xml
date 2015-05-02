@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#000000"
+    >
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="45sp"
+        android:textColor="#006699"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:typeface="serif"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name:"
+        android:textSize="20sp"
+        android:layout_marginTop="161dp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/txtPass"
+        android:layout_alignEnd="@+id/txtPass"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/txtUName" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/txtPass"
+        android:layout_marginStart="46dp"
+        android:textColor="#FFFFFF"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:id="@+id/btnLogin"
+        android:layout_below="@+id/inputPass"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Forgot Your Password?"
+        android:id="@+id/btnForgotPass"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/inputUserName"
+        android:layout_alignBaseline="@+id/txtUName"
+        android:layout_alignBottom="@+id/txtUName"
+        android:layout_alignEnd="@+id/inputPass"
+        android:layout_alignRight="@+id/inputPass"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/inputPass"
+        android:layout_gravity="right"
+        android:layout_alignTop="@+id/txtPass"
+        android:layout_toRightOf="@+id/txtPass"
+        android:layout_toEndOf="@+id/txtPass" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/btnRegister"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignRight="@+id/btnLogin"
+        android:layout_alignEnd="@+id/btnLogin"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_alignStart="@+id/btnLogin"
+        android:onClick="onClick" />
+
+
+</RelativeLayout>

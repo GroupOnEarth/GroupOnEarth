@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.grouponearth.avi.grouponearth" >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PresentationLayer.LoginPage"
+            android:label="@string/title_activity_login_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.AdminMenu"
+            android:label="@string/title_activity_admin_menu" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.BusinessManagerMenu"
+            android:label="@string/title_activity_business_manager_menu" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.ClientMenu"
+            android:label="@string/title_activity_client_menu" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.ForgotYourPasswordPage"
+            android:label="@string/title_activity_forgot_your_password_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.CouponPage"
+            android:label="@string/title_activity_coupon_page" >
+        </activity>
+    </application>
+
+</manifest>

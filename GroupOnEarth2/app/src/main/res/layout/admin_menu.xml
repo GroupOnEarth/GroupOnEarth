@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/primary_material_light"
+    tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.AdminMenu"
+    android:backgroundTint="#000000"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:scrollHorizontally="false"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp"
+        android:id="@+id/txtHeader"
+        android:text="Hello Admin"
+        android:gravity="center"
+        android:typeface="serif"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="363dp"
+        android:layout_height="426dp"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Add New\nBusiness"
+            android:id="@+id/btnPurchased"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Waiting for\nApproval"
+            android:id="@+id/btnEdit"
+            android:layout_alignTop="@+id/btnPurchased"
+            android:layout_toRightOf="@+id/btnPurchased"
+            android:layout_toEndOf="@+id/btnPurchased"
+            android:textSize="15sp"
+            android:typeface="serif"/>
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Businesses\nManagement"
+            android:id="@+id/btnRatings"
+            android:layout_below="@+id/btnPurchased"
+            android:layout_toLeftOf="@+id/btnEdit"
+            android:layout_toStartOf="@+id/btnEdit"
+            android:textSize="14sp"
+            android:typeface="serif"/>
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Manage\nCoupons"
+            android:id="@+id/btnMngCoupons"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_above="@+id/btnMngUsers"
+            android:layout_alignLeft="@+id/btnEdit"
+            android:layout_alignStart="@+id/btnEdit"
+            android:layout_alignBottom="@id/btnRatings"/>
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:text="Manage\nUsers"
+            android:id="@+id/btnMngUsers"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_below="@+id/btnRatings"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:id="@+id/btnLogout"
+            android:layout_gravity="right"
+            android:color="#55000000"
+            android:alpha="0.5"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnMngUsers"
+            android:layout_toEndOf="@+id/btnMngUsers"
+            android:onClick="onClick" />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
+
+
+
