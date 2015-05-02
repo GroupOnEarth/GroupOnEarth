@@ -56,8 +56,6 @@ public class ForgotYourPasswordPage extends ActionBarActivity {
             msg.setSpan(new ForegroundColorSpan(Color.RED), 0, 18, 0);
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }
-        inputMail.getText().toString();
-        Toast.makeText(this, "Mail was sent", Toast.LENGTH_LONG).show();
         this.onBackPressed();
     }
 

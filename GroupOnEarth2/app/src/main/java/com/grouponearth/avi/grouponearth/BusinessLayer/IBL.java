@@ -4,6 +4,7 @@ package com.grouponearth.avi.grouponearth.BusinessLayer;
  * Created by Avi on 01/05/2015.
  */
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.ResultSet;
 
 /**
@@ -19,14 +20,23 @@ public interface IBL {
     public String confirmLogin(String userName, String password);
 
     //Add Methods
-    public void addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType);
 
+    public boolean addPurchase(String userName, String couponID, int alreadyBought);
 
     // Get Methods
+    public ResultSet getCouponByID(String couponID);
+
+
+    public int getAmountOfPurchasedCoupons(String couponID);
+    public ResultSet getAllCoupons();
     public String getPasswordByMail(String mailAddress);
 
     // Is Exists Methods
     public boolean isMailExists(String mailAddress);
-    public ResultSet getCouponByID(String couponID);
+
+
+    public void addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType);
+    public void addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail, String _Gender, Date _DateOfBirth);
+
 
 }

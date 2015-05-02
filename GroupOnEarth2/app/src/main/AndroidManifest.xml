@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.grouponearth.avi.grouponearth" >
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,6 +41,14 @@
         <activity
             android:name=".PresentationLayer.CouponPage"
             android:label="@string/title_activity_coupon_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.SearchCoupons"
+            android:label="@string/title_activity_search_coupons" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.RegisterPage"
+            android:label="@string/title_activity_register_page" >
         </activity>
     </application>
 

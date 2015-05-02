@@ -33,9 +33,6 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
 
-        setContentView(R.layout.activity_main);
-
-
 
         dal = new DAL();
         bl= new BL(dal);

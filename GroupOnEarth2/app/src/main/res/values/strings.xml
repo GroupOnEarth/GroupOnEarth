@@ -9,4 +9,11 @@
     <string name="title_activity_client_menu">ClientMenu</string>
     <string name="title_activity_forgot_your_password_page">ForgotYourPasswordPage</string>
     <string name="title_activity_coupon_page">CouponPage</string>
+    <string name="title_activity_search_coupons">SearchCoupons</string>
+    <string name="title_activity_register_page">RegisterPage</string>
+    <string name="gender_spinner_prompt">Choose Gender</string>
+    <string-array name="gender_spinner">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

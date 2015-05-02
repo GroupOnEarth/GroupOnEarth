@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:text="Coupon Name"
         android:textSize="50sp"
         android:id="@+id/txtHeader" />
@@ -23,40 +23,90 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Business Name: "
-                android:textSize="20sp"/>
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Coupon Description:\n"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/txtDesc" />
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
                 >
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:text="Price: "
                     android:textSize="25sp"
-                    android:gravity="start"/>
+                    android:gravity="top"
+                    android:id="@+id/txtPrice"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
                     android:text="Discount Price: "
                     android:textSize="15sp"
                     android:gravity="right"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/txtDPrice" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already Bought: "
+                    android:textSize="15sp"
+                    android:gravity="start"
+                    android:id="@+id/txtBought"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:text="Expiration Date: "
+                    android:textSize="15sp"
+                    android:gravity="right"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/txtExpDate" />
 
             </RelativeLayout>
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Business Name: "
+                android:textSize="20sp"
+                android:id="@+id/txtBName" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Address: "
+                android:textSize="20sp"
+                android:id="@+id/txtAddress" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:text="Buy Now!"
+                android:id="@+id/btnBuy"
+                android:onClick="onClick" />
 
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>

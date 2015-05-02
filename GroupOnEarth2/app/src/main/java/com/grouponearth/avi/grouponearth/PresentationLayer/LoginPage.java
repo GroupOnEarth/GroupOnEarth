@@ -38,14 +38,16 @@ public class LoginPage extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+        Log.d("CREATE", "login on create");
+        inputUserName   = (EditText)findViewById(R.id.inputUserName);
+        inputPassword   = (EditText)findViewById(R.id.inputPass);
 
 
     }
 
     protected void onClickLogin(View v){
         btnLogin = (Button)v;
-        inputUserName   = (EditText)findViewById(R.id.inputUserName);
-        inputPassword   = (EditText)findViewById(R.id.inputPass);
+
         bl = new BL();
         String uName = inputUserName.getText().toString();
         String pass = inputPassword.getText().toString();
@@ -82,7 +84,7 @@ public class LoginPage extends Activity implements View.OnClickListener {
             }
             else
             {
-
+                Toast.makeText(this, "Invalid User Name\nOr Password", Toast.LENGTH_LONG).show();
             }
         }
 
@@ -91,21 +93,13 @@ public class LoginPage extends Activity implements View.OnClickListener {
     protected void onClickRegister(View v){
         btnRegister = (Button)v;
         btnRegister.setText("clicked");
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"shahafstein@gmail.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-        i.putExtra(Intent.EXTRA_TEXT   , "body of email");
-        try {
-            startActivity(Intent.createChooser(i, "Send mail..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(this, RegisterPage.class);
+        startActivity(intent);
+
     }
 
     protected void onClickForgotPass(View v){
         btnForgotPass = (Button)v;
-        btnForgotPass.setText("clicked");
         Intent intent = new Intent(this, ForgotYourPasswordPage.class);
         // intent.putExtra("IBL", (java.io.Serializable) bl);
         startActivity(intent);

@@ -5,6 +5,7 @@ package com.grouponearth.avi.grouponearth.BusinessLayer;
  */
 import com.grouponearth.avi.grouponearth.DataLayer.IDAL;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -44,14 +45,21 @@ public class BL implements IBL {
 
     @Override
     public ResultSet getCouponByID(String couponID) {
-        return null;
+        return dal.getCouponByID(couponID);
     }
 
 
-    public void addSystemUser(String _UserName, String _ID, String _Password, String _FirstName, String _LastName, String _Phone, String _EMail, String _UserType)
-    {
-        dal.addSystemUser( _UserName,_ID,_Password,_FirstName,_LastName,_Phone,_EMail,_UserType);
+    public boolean addPurchase(String userName, String couponID, int alreadyBought) {
+        String serial = couponID + "-" + alreadyBought;
+        return dal.addPurchase(userName, couponID, serial);
     }
+
+    @Override
+    public int getAmountOfPurchasedCoupons(String couponID) {
+        return dal.getAmountOfPurchasedCoupons(couponID);
+    }
+
+
 
     public String getPasswordByMail(String mailAddress)
     {
@@ -59,12 +67,25 @@ public class BL implements IBL {
         return "";
     }
 
-
     public boolean isMailExists(String mailAddress)
     {
         //todo
         return true;
     }
+
+    public ResultSet getAllCoupons(){
+        return dal.getAllCoupons();
+    }
+
+    public void addSystemUser(String _UserName, String _ID, String _Password, String _FirstName, String _LastName, String _Phone, String _EMail, String _UserType)
+    {
+        dal.addSystemUser( _UserName,_ID,_Password,_FirstName,_LastName,_Phone,_EMail,_UserType);
+    }
+    public void addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail, String _Gender, Date _DateOfBirth)
+    {
+        dal.addSystemUser( _UserName, _ID, _Password, _FirstName, _LastName, _Phone, _EMail, _Gender, _DateOfBirth);
+    }
+
 
 
 
