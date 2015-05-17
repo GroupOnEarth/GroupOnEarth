@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
 import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
@@ -27,8 +29,12 @@ public class CouponPage extends ActionBarActivity {
     private TextView txtDPrice;
     private TextView txtAddress;
     private TextView txtBought;
+    private TextView txtHeader;
+    private RatingBar ratingBar;
     private int _alreadyBought;
+    private TextView expDate;
     private Button btnBuy;
+    private Boolean boughtCoupon;
 
 
     @Override
@@ -52,6 +58,10 @@ public class CouponPage extends ActionBarActivity {
 
     }
 
+    public void boughtMsg(){
+        Toast.makeText(this, "Congratulations!\nPurchase Was Made", Toast.LENGTH_SHORT).show();
+    }
+
     public void onClick(View v){
             _alreadyBought = bl.getAmountOfPurchasedCoupons(_couponID);
             new AlertDialog.Builder(this)
@@ -62,6 +72,8 @@ public class CouponPage extends ActionBarActivity {
                             bl.addPurchase(_userName, _couponID, _alreadyBought);
                             _alreadyBought = bl.getAmountOfPurchasedCoupons(_couponID);
                             txtBought.setText("Already Bought: " + _alreadyBought);
+                            boughtMsg();
+
                         }
                     })
                     .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -74,34 +86,12 @@ public class CouponPage extends ActionBarActivity {
 
 
 
-
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_coupon_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void initializePage(){
+        boughtCoupon = false;
         setContentView(R.layout.coupon_page);
         bl = new BL();
         txtBName = (TextView) findViewById(R.id.txtBName);
@@ -111,20 +101,34 @@ public class CouponPage extends ActionBarActivity {
         txtAddress = (TextView) findViewById(R.id.txtAddress);
         btnBuy = (Button) findViewById(R.id.btnBuy);
         txtBought = (TextView) findViewById(R.id.txtBought);
+        expDate = (TextView) findViewById(R.id.txtExpDate);
+        txtHeader = (TextView) findViewById(R.id.txtHeader);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
     }
 
     private void setCouponToViews(ResultSet coupon){
         try {
-            txtBName.setText(txtBName.getText().toString()+coupon.getString(9));
+            txtHeader.setText(coupon.getString(2));
             txtDesc.setText(txtDesc.getText().toString()+coupon.getString(3));
             txtPrice.setText(txtPrice.getText().toString()+coupon.getString(5));
             txtDPrice.setText(txtDPrice.getText().toString()+coupon.getString(6));
-            txtAddress.setText(txtAddress.getText().toString()+coupon.getString(2));
+            txtBName.setText(txtBName.getText().toString()+coupon.getString(8));
+            txtAddress.setText(txtAddress.getText().toString()+coupon.getString(9));
+            ratingBar.setRating((float)coupon.getDouble(11));
+            try {
+                expDate.setText(expDate.getText().toString() + coupon.getDate(7));
+            }
+            catch(Exception e){
+                expDate.setText(expDate.getText().toString() + "None");
+            }
+
             _alreadyBought = bl.getAmountOfPurchasedCoupons(_couponID);
             txtBought.setText(txtBought.getText().toString()+_alreadyBought);
-        }
-        catch (SQLException e){
 
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Could Not\nLoad Coupon", Toast.LENGTH_LONG);
         }
 
     }

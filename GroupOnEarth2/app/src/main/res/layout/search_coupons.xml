@@ -6,25 +6,108 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.SearchCoupons"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/search_menu">
 
 
-
-    <SearchView
+    <LinearLayout
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="search for coupons"
+        android:id="@+id/editSearch"
+        android:onClick="onClick"/>
+    <Button
+        android:layout_width="60dp"
         android:layout_height="50dp"
-        android:id="@+id/searchView"
+        android:layout_weight="1"
+        android:background="@drawable/search"
+        android:id="@+id/btnSearch"
+        android:onClick="onClick" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:id="@+id/radioCat"
+                android:checked="true"
+                android:onClick="onClick"
+                />
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerCategory"
+                android:layout_marginTop="12dp"
+                android:spinnerMode="dropdown"
+                android:prompt="@string/category_spinner_prompt"
+                android:entries="@array/category_spinner"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                />
+         </LinearLayout>
+        <LinearLayout
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Businesses"
+                android:id="@+id/radioBusiness"
+                android:checked="false"
+                android:onClick="onClick"
+                />
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerBusinesses"
+                android:layout_marginTop="12dp"
+                android:spinnerMode="dropdown"
+                android:prompt="@string/category_spinner_prompt"
+                android:entries="@array/category_spinner"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
 
-         />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferences"
+            android:id="@+id/radioPre"
+            android:checked="false"
+            android:onClick="onClick" />
+        </LinearLayout>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Coupons"
+        android:text="Coupons Review"
         android:textSize="30sp"
         android:typeface="serif"
         android:textColor="#006699"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listCoupons" />
+        android:id="@+id/listCoupons"
+        android:divider="@color/black"
+        android:dividerHeight="1dp"/>
 </LinearLayout>

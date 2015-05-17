@@ -15,32 +15,39 @@ import com.grouponearth.avi.grouponearth.DataLayer.DAL;
 import com.grouponearth.avi.grouponearth.DataLayer.IDAL;
 import com.grouponearth.avi.grouponearth.PresentationLayer.LoginPage;
 
+import java.util.concurrent.CountDownLatch;
+
 
 public class MainActivity extends ActionBarActivity {
 
-    Button btnLogin;
-    Button btnSign;
+
     private TextView adminTxtView;
     private IDAL dal;
     private IBL bl;
-
+    private GifView gifView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        //gifView = (GifView) findViewById(R.id.main_gifview);
         setContentView(R.layout.activity_main);
-
-
+        String stringInfo="";
+      /*  stringInfo += "Duration: " + gifView.getMovieDuration() + "\n";
+       stringInfo += "W x H: "
+                + gifView.getMovieWidth() + " x "
+                + gifView.getMovieHeight() + "\n";*/
+        //CountDownLatch cd = new CountDownLatch(1);
         dal = new DAL();
         bl= new BL(dal);
+
 
         Intent intent = new Intent(MainActivity.this, LoginPage.class);
         startActivity(intent);
 
     }
+
 
 
     @Override

@@ -16,4 +16,31 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name = "category_spinner_prompt">None</string>
+    <string-array name="category_spinner">
+        <item>All Categories</item>
+        <item>Sports</item>
+        <item>Health and Spa</item>
+        <item>Travels</item>
+        <item>Home</item>
+        <item>Food</item>
+        <item>Clothing</item>
+    </string-array>
+    <string name="title_activity_client_coupons">ClientCoupons</string>
+    <string name="title_activity_forget_your_password_page">ForgetYourPasswordPage</string>
+    <string name="title_activity_add_new_admin_page">AddNewAdminPage</string>
+    <string name="title_activity_add_new_business_page">AddNewBusinessPage</string>
+    <string name="title_activity_business_coupons">BusinessCoupons</string>
+    <string name="title_activity_rate_coupons">RateCoupons</string>
+    <string name="title_activity_around_me_coupons_page">AroundMeCouponsPage</string>
+    <string name="title_activity_rate_coupon_page">RateCouponPage</string>
+    <string name="title_activity_business_add_new_coupon">BusinessAddNewCoupon</string>
+    <string name="title_activity_manage_coupons_generic">ManageCouponsGeneric</string>
+    <string name="title_activity_business_manage_coupon">BusinessManageCoupon</string>
+    <string name="title_activity_coupon_approval_page">CouponApprovalPage</string>
+    <string name="title_activity_unapproved_coupon_page">UnapprovedCouponPage</string>
+    <string name="title_activity_update_client_list_page">UpdateClientListPage</string>
+    <string name="title_activity_update_client_page">UpdateClientPage</string>
+    <string name="title_activity_business_edit_profile">BusinessEditProfile</string>
+    <string name="title_activity_update_coupon_page">UpdateCouponPage</string>
 </resources>

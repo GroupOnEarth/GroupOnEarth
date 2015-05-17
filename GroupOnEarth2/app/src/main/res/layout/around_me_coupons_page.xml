@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+android:paddingBottom="@dimen/activity_vertical_margin"
+tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.AroundMeCouponsPage"
+android:weightSum="1"
+android:orientation="vertical"
+android:background="@drawable/search_menu">
+
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <EditText
+        android:layout_width="00dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:text="5"
+        android:inputType="number"
+        android:id="@+id/editDistance" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Km Around Me"
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:textColor="#006699"
+        android:layout_weight="0.22"
+        android:id="@+id/aroundMeText" />
+    <Button
+        android:layout_width="00dp"
+        android:layout_height="50dp"
+        android:layout_weight="0.09"
+        android:background="@drawable/search"
+        android:id="@+id/btnSearch"
+        android:onClick="onClick" />
+</LinearLayout>
+
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Coupons Review"
+    android:textSize="30sp"
+    android:typeface="serif"
+    android:textColor="#006699"/>
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/listCoupons"
+    android:divider="@color/black"
+    android:dividerHeight="1dp"/>
+</LinearLayout>
+

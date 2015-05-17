@@ -1,23 +1,23 @@
 package com.grouponearth.avi.grouponearth.PresentationLayer;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-
-        import android.app.DatePickerDialog;
-        import android.os.Bundle;
-        import android.support.v7.app.ActionBarActivity;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.Spinner;
-        import android.widget.Toast;
-        import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
-        import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
-        import com.grouponearth.avi.grouponearth.R;
-        import java.sql.Date;
-        import java.util.Calendar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.grouponearth.avi.grouponearth.BusinessLayer.BL;
+import com.grouponearth.avi.grouponearth.BusinessLayer.IBL;
+import com.grouponearth.avi.grouponearth.R;
+import java.sql.Date;
+import java.util.Calendar;
 public class RegisterPage extends ActionBarActivity {
     private IBL bl;
     private String userName;
@@ -31,7 +31,7 @@ public class RegisterPage extends ActionBarActivity {
     private Date birthday;
     Button btnCalendar;
     private int mYear, mMonth, mDay;
-    private int chosenYear,chosenYearMonth,chosenDay;
+    private int chosenYear=0,chosenYearMonth,chosenDay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +57,15 @@ public class RegisterPage extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onClickSignUp(View v) {
-        //todo check all detail correct
-        //todo check user doesn't exists
-        //todo check mal doesn't exists
+        ((TextView) findViewById(R.id.txtUserName)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtPassword)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtFirstName)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtLastName)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtID)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtPhone)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtEMAIL)).setTextColor(Color.BLACK);
+        ((TextView) findViewById(R.id.txtGender)).setTextColor(Color.BLACK);
+        boolean validDetails = true;
         userName= String.valueOf(((EditText) findViewById(R.id.fieldUserName)).getText());
         password= String.valueOf(((EditText)findViewById(R.id.fieldPassword)).getText());
         firstName= String.valueOf(((EditText)findViewById(R.id.fieldFirstName)).getText());
@@ -70,9 +76,73 @@ public class RegisterPage extends ActionBarActivity {
         birthday= new Date(chosenYear,chosenYearMonth,chosenDay);
         Spinner sGender =  (Spinner)findViewById(R.id.spinnerGender);
         gender= String.valueOf(sGender.getSelectedItem());
-        bl.addSystemUser( userName, Id, password, firstName, lastName, phone, Email, gender, birthday);
-        Toast.makeText(this, userName +" was added!", Toast.LENGTH_LONG).show();
-        this.onBackPressed();
+        if (userName.matches("")) {
+            ((TextView) findViewById(R.id.txtUserName)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (password.matches("")) {
+            ((TextView) findViewById(R.id.txtPassword)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (firstName.matches("")) {
+            ((TextView) findViewById(R.id.txtFirstName)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (lastName.matches("")) {
+            ((TextView) findViewById(R.id.txtLastName)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (Id.matches("")) {
+            ((TextView) findViewById(R.id.txtID)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (phone.matches("")) {
+            ((TextView) findViewById(R.id.txtPhone)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (Email.matches("")) {
+            ((TextView) findViewById(R.id.txtEMAIL)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (chosenYear == 0) {
+            ((TextView) findViewById(R.id.txtBirthday)).setTextColor(Color.RED);
+            validDetails= false;
+        }
+        if (validDetails)
+        {
+            if (bl.isUserExists(userName))
+            {
+                ((TextView) findViewById(R.id.txtUserName)).setTextColor(Color.RED);
+                Toast toast = Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT);
+                TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setTextColor(Color.RED);
+                toast.show();
+            }
+            else
+            {
+                if (bl.isMailExists(Email))
+                {
+                    ((TextView) findViewById(R.id.txtEMAIL)).setTextColor(Color.RED);
+                    Toast toast = Toast.makeText(this, "E-mail already exists", Toast.LENGTH_SHORT);
+                    TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                    tv.setTextColor(Color.RED);
+                    toast.show();
+                }
+                else
+                {
+                    bl.addSystemUser( userName, Id, password, firstName, lastName, phone, Email, gender, birthday);
+                    Toast.makeText(this, userName +" was added!", Toast.LENGTH_LONG).show();
+                    this.onBackPressed();
+                }
+            }
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT);
+            TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setTextColor(Color.RED);
+            toast.show();
+        }
     }
     public void onClickSelectDate(View v) {
         btnCalendar = (Button) findViewById(R.id.buttonSelectDate);

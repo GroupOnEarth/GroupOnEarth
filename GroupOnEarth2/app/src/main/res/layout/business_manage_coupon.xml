@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/manage"
+    tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.BusinessManageCoupon">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Coupon Name"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:id="@+id/txtHeader" />
+
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Coupon Description:\n"
+                android:textSize="20sp"
+                android:id="@+id/txtDesc"
+                android:textColor="@color/black"
+                />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="Price: "
+                    android:textSize="25sp"
+                    android:gravity="top"
+                    android:id="@+id/txtPrice"
+                    android:textColor="@color/black"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:text="Discount Price: "
+                    android:textSize="15sp"
+                    android:gravity="right"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/txtDPrice"
+                    android:textColor="@color/black"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already Bought: "
+                    android:textSize="15sp"
+                    android:gravity="start"
+                    android:id="@+id/txtBought"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:text="Expiration Date: "
+                    android:textSize="15sp"
+                    android:gravity="right"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/txtExpDate"
+                    android:textColor="@color/black"
+                    />
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Fulfilled: "
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/txtFulfilled"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Coupon's Rating"
+                android:typeface="serif"
+                android:textSize="20sp"
+                android:textColor="#DAA520"/>
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:numStars="5"
+                android:id="@+id/ratingBar"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Delete Coupon"
+                android:typeface="serif"
+                android:id="@+id/business_btnDelete"
+                android:onClick="onClick"
+                android:textColor="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fulfill Now"
+                    android:id="@+id/business_btnfulFilled"
+                    android:typeface="serif"
+                    android:onClick="onClick"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/txtSerial"
+                    />
+             </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

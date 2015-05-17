@@ -1,0 +1,169 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/new_coupon"
+    tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.BusinessAddNewCoupon">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="35sp"
+        android:text="Create A New Coupon"
+        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView android:text="Coupon ID: "
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:layout_gravity="right"
+            android:id="@+id/addCoupon_txtID" />
+         <EditText
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/addCoupon_ID"
+             android:layout_weight="1"
+             />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:text="Coupon Name: "
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:id="@+id/addCoupon_txtname" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/addCoupon_name" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:text="Description: "
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:id="@+id/addCoupon_txtDesc" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addCoupon_description"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCoupon_spinnerCategory"
+        android:layout_marginTop="12dp"
+        android:spinnerMode="dropdown"
+        android:prompt="@string/category_spinner_prompt"
+        android:entries="@array/category_spinner"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:text="Price: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:textColor="@color/black"
+            android:id="@+id/addCoupon_txtPrice" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/addCoupon_price"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView android:text="Discount Price: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:id="@+id/addCoupon_txtDPrice"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/addCoupon_DPrice"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:text="Experation Date: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:layout_gravity="center_vertical"/>
+        <Button
+            android:id="@+id/addCoupon_caleneder"
+            android:layout_width="fill_parent"
+            android:layout_height="37dp"
+            android:text="Select Date"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:datePickerMode="spinner"
+            android:onClick="onClickSelectDate"
+            />
+        />
+        </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Coupon\nNow!"
+        android:layout_gravity="center_horizontal"
+        android:typeface="serif"
+        android:layout_marginTop="20dp"
+        android:id="@+id/addCoupon_btnAdd"
+        android:onClick="onClick"
+        />
+</LinearLayout>
+
+
+</ScrollView>
+
+

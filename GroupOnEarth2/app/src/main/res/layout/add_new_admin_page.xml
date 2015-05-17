@@ -1,0 +1,176 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="com.grouponearth.avi.grouponearth.PresentationLayer.RegisterPage"
+        >
+        <TextView android:text="New Admin" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtWelcome"
+            android:textColor="#ff6eaeff"
+            android:textSize="@android:dimen/notification_large_icon_height"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="12dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="First name:"
+                android:id="@+id/txtFirstName"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fieldFirstName"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Last name:"
+                android:id="@+id/txtLastName"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fieldLastName"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ID:"
+                android:id="@+id/txtID"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fieldID"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:inputType="number"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="EMAIL:"
+                android:id="@+id/txtEMAIL"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:id="@+id/fieldEMail"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Phone:"
+                android:id="@+id/txtPhone"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/fieldPhone"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="User Name:"
+                android:id="@+id/txtUserName"
+                android:textSize="21sp"
+                android:layout_marginTop="25dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fieldUserName"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Password:"
+                android:id="@+id/txtPassword"
+                android:textSize="21sp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fieldPassword"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Admin"
+                android:id="@+id/btnAddAdmin"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:onClick="onClickAddNewAdmin" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

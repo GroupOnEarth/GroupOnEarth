@@ -92,7 +92,6 @@ public class LoginPage extends Activity implements View.OnClickListener {
 
     protected void onClickRegister(View v){
         btnRegister = (Button)v;
-        btnRegister.setText("clicked");
         Intent intent = new Intent(this, RegisterPage.class);
         startActivity(intent);
 

@@ -3,6 +3,7 @@
     package="com.grouponearth.avi.grouponearth" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:hardwareAccelerated="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +37,6 @@
             android:label="@string/title_activity_client_menu" >
         </activity>
         <activity
-            android:name=".PresentationLayer.ForgotYourPasswordPage"
-            android:label="@string/title_activity_forgot_your_password_page" >
-        </activity>
-        <activity
             android:name=".PresentationLayer.CouponPage"
             android:label="@string/title_activity_coupon_page" >
         </activity>
@@ -49,6 +47,67 @@
         <activity
             android:name=".PresentationLayer.RegisterPage"
             android:label="@string/title_activity_register_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.ClientCoupons"
+            android:label="@string/title_activity_client_coupons" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.ForgotYourPasswordPage"
+            android:label="@string/title_activity_forgot_your_password_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.AddNewAdminPage"
+            android:label="@string/title_activity_add_new_admin_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.AddNewBusinessPage"
+            android:label="@string/title_activity_add_new_business_page" >
+        </activity>
+
+        <activity
+            android:name=".PresentationLayer.AroundMeCouponsPage"
+            android:label="@string/title_activity_around_me_coupons_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.RateCouponPage"
+            android:label="@string/title_activity_rate_coupon_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.BusinessAddNewCoupon"
+            android:label="@string/title_activity_business_add_new_coupon" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.ManageCouponsGeneric"
+            android:label="@string/title_activity_manage_coupons_generic" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.BusinessManageCoupon"
+            android:label="@string/title_activity_business_manage_coupon" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.CouponApprovalPage"
+            android:label="@string/title_activity_coupon_approval_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.UnapprovedCouponPage"
+            android:label="@string/title_activity_unapproved_coupon_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.UpdateClientListPage"
+            android:label="@string/title_activity_update_client_list_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.UpdateClientPage"
+            android:label="@string/title_activity_update_client_page" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.BusinessEditProfile"
+            android:label="@string/title_activity_business_edit_profile" >
+        </activity>
+        <activity
+            android:name=".PresentationLayer.UpdateCouponPage"
+            android:label="@string/title_activity_update_coupon_page" >
         </activity>
     </application>
 
