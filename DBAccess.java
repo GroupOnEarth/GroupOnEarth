@@ -1,6 +1,7 @@
 
 import java.sql.*;
 
+
 /**
  * DBAccess is a class which provides access to the database.
  * DBAccess contains:
@@ -12,9 +13,9 @@ import java.sql.*;
 
 public class DBAccess {
 
-	private static final String url = "jdbc:mysql://localhost:3306/group_on_earth_db";
-	private static final String user = "root";
-	private static final String password = "groupOnEarth";
+	private static final String url = "jdbc:mysql://grouponearth.cokwpobid1ly.us-west-2.rds.amazonaws.com:3306/GroupOnEarth";
+	private static final String user = "shahaf";
+	private static final String password = "grouponearth";
 	private static Connection con;
 
 	/**
@@ -31,13 +32,14 @@ public class DBAccess {
 
 			try
 			{	
-				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection(url, user, password);
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
 
 			}
 			catch(Exception e)
 			{
-				System.out.println("DBA ACCESS: Exception cought- Connection Error");
+				//System.out.println("DBA ACCESS: Exception cought- Connection Error");
+				e.printStackTrace();
 			}
 		
 	}
@@ -58,7 +60,7 @@ public class DBAccess {
 		CallableStatement addUser;
 		try 
 		{
-			addUser = con.prepareCall("call add_systemuser (?,?,?,?,?,?,?,?)");
+			addUser = (CallableStatement) con.prepareCall("call add_systemuser (?,?,?,?,?,?,?,?)");
 			addUser.setString(1, _UserName);
 			addUser.setString(2, _ID);
 			addUser.setString(3, _Password);
@@ -85,12 +87,12 @@ public class DBAccess {
 	 * @pre: @param _UserName doen't exists in database.
 	 * @post: SystemUser.size = @pre SystemUser.size+1, Cliet.size= @pre Client.size+1
 	 */
-	public boolean addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType, String _Gender, int _Location, Date _DateOfBirth)
+	public boolean addSystemUser(String _UserName, String _ID,String _Password,String _FirstName,String _LastName,String _Phone,String _EMail,String _UserType, String _Gender, Date _DateOfBirth)
 	{
 		CallableStatement addUser;
 		try 
 		{
-			addUser = con.prepareCall("call add_systemuser (?,?,?,?,?,?,?,?)");
+			addUser = (CallableStatement) con.prepareCall("call add_systemuser (?,?,?,?,?,?,?,?)");
 			addUser.setString(1, _UserName);
 			addUser.setString(2, _ID);
 			addUser.setString(3, _Password);
@@ -102,11 +104,10 @@ public class DBAccess {
 			boolean ans = addUser.execute();
 			if(_UserType.equals("Client")){
 				CallableStatement addClient;
-				addClient = con.prepareCall("call add_client (?,?,?,?)");
+				addClient = (CallableStatement) con.prepareCall("call add_client (?,?,?)");
 				addClient.setString(1, _UserName);
 				addClient.setString(2, _Gender);
-				addClient.setInt(3, _Location);
-				addClient.setDate(4, _DateOfBirth);
+				addClient.setDate(3, _DateOfBirth);
 				ans = ans & (addClient.execute());
 				return ans;
 
@@ -132,7 +133,7 @@ public class DBAccess {
 		CallableStatement getC;
 		try 
 		{
-			getC = con.prepareCall("call get_client (?)");
+			getC = (CallableStatement) con.prepareCall("call get_client (?)");
 			getC.setString(1, _UserName);
 			return getC.executeQuery();
 
@@ -156,7 +157,7 @@ public class DBAccess {
 		CallableStatement getU;
 		try 
 		{
-			getU = con.prepareCall("call get_user (?)");
+			getU = (CallableStatement) con.prepareCall("call get_user (?)");
 			getU.setString(1, _UserName);
 			return getU.executeQuery();
 
@@ -180,7 +181,7 @@ public class DBAccess {
 		CallableStatement delUser;
 		try 
 		{
-			delUser = con.prepareCall("call delete_user (?)");
+			delUser = (CallableStatement) con.prepareCall("call delete_user (?)");
 			delUser.setString(1, _UserName);
 			return delUser.execute();
 
@@ -204,7 +205,7 @@ public class DBAccess {
 		CallableStatement updatePass;
 		try
 		{
-			updatePass = con.prepareCall("call update_password (?, ?, ?)");
+			updatePass = (CallableStatement) con.prepareCall("call update_password (?, ?, ?)");
 			updatePass.setString(1, _UserName);
 			updatePass.setString(2, _oldPass);
 			updatePass.setString(3, _newPass);
@@ -230,7 +231,7 @@ public class DBAccess {
 	public boolean addPurchase(String _userName, String _couponID){
 		CallableStatement addPurchase;
 		try{
-			addPurchase = con.prepareCall("call add_coupon_purchase(?,?)");
+			addPurchase = (CallableStatement) con.prepareCall("call add_coupon_purchase(?,?)");
 			addPurchase.setString(1, _userName);
 			addPurchase.setString(2, _couponID);
 			return addPurchase.execute();
@@ -252,7 +253,7 @@ public class DBAccess {
 	public boolean deletePurchase(String _userName, String _couponID){
 		CallableStatement deletePurchase;
 		try{
-			deletePurchase = con.prepareCall("call delete_coupon_purchase(?,?)");
+			deletePurchase = (CallableStatement) con.prepareCall("call delete_coupon_purchase(?,?)");
 			deletePurchase.setString(1, _userName);
 			deletePurchase.setString(2, _couponID);
 			return deletePurchase.execute();
@@ -275,7 +276,7 @@ public class DBAccess {
 	{
 		CallableStatement approveCoupon;
 		try{
-			approveCoupon = con.prepareCall("call approve_coupon(?)");
+			approveCoupon = (CallableStatement) con.prepareCall("call approve_coupon(?)");
 			approveCoupon.setString(1, _couponID);
 			return approveCoupon.execute();
 		}
@@ -297,7 +298,7 @@ public class DBAccess {
 	{
 		CallableStatement approveCoupon;
 		try{
-			approveCoupon = con.prepareCall("call deapprove_coupon(?)");
+			approveCoupon = (CallableStatement) con.prepareCall("call deapprove_coupon(?)");
 			approveCoupon.setString(1, _couponID);
 			return approveCoupon.execute();
 		}

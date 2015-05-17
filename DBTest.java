@@ -1,21 +1,18 @@
 import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.sql.*;
 
 public class DBTest {
 
 	private DBAccess db;
-	private static boolean isCreated = false;
 
 	@Before
 	public void setUp() throws Exception 
 	{
-		if(!isCreated){
-			createDB.createDataBase();
-			isCreated = true;
-		}
 		db = new DBAccess();
 	}
 
@@ -27,16 +24,7 @@ public class DBTest {
 		//db.closeConnection();
 	}
 
-	/**
-	 * Test #1    
-	 */
-	@Test
-	public void test_saved_information() throws SQLException 
-	{
-		ResultSet rs = db.sqlQuery("SELECT Count(*) FROM systemuser");
-		if(rs.next())
-			assertEquals(2, rs.getInt(1));
-	}
+
 
 	/**
 	 * Test #2
@@ -89,42 +77,14 @@ public class DBTest {
 
 	}
 
-	/**
-	 * Test #5
-	 * Tests adding System User Client to the database.
-	 * The test will add SystemUser Client "MosheU".
-	 * Expect TRUE- "MosheU" was also added to 'Client' table.
-	 */
-	@Test
-	public void test_add_client_cascade() throws SQLException {
-		db.addSystemUser("MosheU", "1234567", "1111", "moshe", "unger", "12345", "", "Client", "Male", 0, new Date(1000));
-		ResultSet rs = db.sqlQuery("Select * FROM Client WHERE UserName='MosheU'");
-		rs.next();
-		assertEquals("MosheU", rs.getString(1));
-		db.deleteUser("MosheU");
-	}
+
 	/**
 	 * Test #6
 	 * Tests deleting System User Client from the database.
 	 * The test will delete SystemUser Client "MosheU".
 	 * Expect TRUE- "MosheU" was also deleted from 'Client' table.
 	 */
-	@Test
-	public void test_delete_client_cascade() throws SQLException {
-		db.addSystemUser("MosheU", "1234567", "1111", "moshe", "unger", "12345", "", "Client", "Male", 0, new Date(1000));
-		db.deleteUser("MosheU");
-		ResultSet rs = db.sqlQuery("Select Count(*) FROM Client");
-		if(rs.next()){
-			assertEquals(0, rs.getInt(1));
-		}
-	}
-	/**
-	 * Test #7
-	 * Tests updating user's password.
-	 * The test will add SystemUser "Moshe" with password '12345'.
-	 * The test will update the password using updatePassword function to '99999'.
-	 * Expect TRUE- The password of "Moshe" was updated.
-	 */
+
 	@Test
 	public void test_update_password() throws SQLException {
 		db.addSystemUser("Moshe", "Unger", "12345", "Moshe", "Unger", "054-5555555", "mosheun@post.bgu.ac.il", "Admin");
@@ -135,43 +95,8 @@ public class DBTest {
 		db.deleteUser("Moshe");
 	}
 
-	/**
-	 * Test #8
-	 * Tests adding coupon_purchase.
-	 * The test will add SystemUser "Moshe" with password '12345'.
-	 * The test will add a purchase to "Moshe".
-	 * Expect TRUE- The purchase was added to database.
-	 */
-	@Test
-	public void test_add_coupon_purchase() throws SQLException {
-		db.addSystemUser("Moshe", "Unger", "12345", "Moshe", "Unger", "054-5555555", "mosheun@post.bgu.ac.il", "Admin");
-		db.addPurchase("Moshe", "11111");
-		ResultSet rs = db.sqlQuery("SELECT * FROM couponpurchases");
-		if(rs.next()){
-			String queryResult = rs.getString(1) + " " + rs.getString(2);
-			assertEquals("Moshe 11111", queryResult);
-		}
-		db.deletePurchase("Moshe", "11111");
-		db.deleteUser("Moshe");
 
-	}
 
-	/**
-	 * Test #9
-	 * Tests deleting user's coupon_purchase.
-	 * The test will delete purchase from the database. Username-Moshe couponID-11111
-	 * Expect TRUE- After delete the are 0 purchases in database.
-	 */
-	@Test
-	public void test_delete_purchase() throws SQLException {
-		db.addSystemUser("Moshe", "Unger", "12345", "Moshe", "Unger", "054-5555555", "mosheun@post.bgu.ac.il", "Admin");
-		db.addPurchase("Moshe", "11111");
-		db.deletePurchase("Moshe", "11111");
-		ResultSet rs = db.sqlQuery("SELECT Count(*) FROM couponpurchases");
-		if(rs.next())
-			assertEquals(0, rs.getInt(1));
-		db.deleteUser("Moshe");
-	}
 
 	/**
 	 * Test #10
@@ -186,6 +111,19 @@ public class DBTest {
 		if(rs.next())
 			assertEquals(1, rs.getInt(1));
 		db.deapproveCoupon("11111");
+	}
+	
+	@Test
+	public void test_add_client() throws SQLException{
+		db.addSystemUser("Moshe", "1111","1234","moshe","unger","1234","aw", "client", "male",null);
+		ResultSet rs = db.sqlQuery("SELECT * FROM client WHERE UserName='Moshe'");
+		try{
+			rs.next();
+			assertEquals(rs.getString(1), "Moshe");
+		}
+		catch(SQLException e){
+			assertEquals(0,  1);
+		}
 	}
 
 
